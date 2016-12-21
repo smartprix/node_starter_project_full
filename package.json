@@ -1,0 +1,63 @@
+{
+  "name": "node-starter-project-full",
+  "version": "0.1.0",
+  "description": "Starter Project For Node (With VueJS & KoaJS)",
+  "main": "dist/index.js",
+  "repository": {
+    "private": true
+  },
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "start": "nodemon src/index.js --ignore dist/ res/ static/ --exec babel-node",
+    "dev": "gulp",
+    "test": "npm run lint && npm run test-only",
+    "check-coverage": "true",
+    "build": "babel src --out-dir dist",
+    "lint": "eslint src res/js",
+    "lint:fix": "eslint src res/js --fix",
+    "test-only": "mocha --compilers js:babel-register test/*.test.js",
+    "precommit": "npm run build && npm test && npm run check-coverage"
+  },
+  "author": "Hitesh Khandelwal <hitesh@smartprix.com> (http://www.smartprix.com/)",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "2.0.0",
+    "koa-body": "2.0.0",
+    "koa-router": "7.0.1",
+    "koa-static-cache": "3.1.7",
+    "koa-views": "5.2.0",
+    "lodash": "4.17.2",
+    "sm-utils": "git://github.com/smartprix/sm-utils.git",
+    "vue": "2.1.6",
+    "vue-router": "2.1.1",
+    "vuex": "2.1.1"
+  },
+  "devDependencies": {
+    "babel-cli": "6.18.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "6.18.0",
+    "babel-preset-stage-0": "6.16.0",
+    "babel-register": "6.18.0",
+    "chai": "3.5.0",
+    "eslint": "3.12.2",
+    "eslint-config-smartprix": "3.1.4",
+    "gulp": "3.9.1",
+    "husky": "0.12.0",
+    "mocha": "3.2.0",
+    "sm-webpack-config": "0.8.2"
+  },
+  "eslintConfig": {
+    "extends": "smartprix",
+    "rules": {}
+  },
+  "babel": {
+    "presets": [
+      "stage-0"
+    ],
+    "plugins": [
+      "transform-es2015-modules-commonjs"
+    ],
+    "sourceMaps": true
+  }
+}

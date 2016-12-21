@@ -1,0 +1,27 @@
+{
+  "apps" : [{
+    // Application #1
+    "name"        : "node-starter-project-full",
+    "script"      : "dist/index.js",
+
+    "out_file"         : "/smartprix/logs/server_logs/node-starter-project-full.log",
+    "error_file"       : "/smartprix/logs/server_logs/node-starter-project-full-error.log",
+
+    "instances"        : 1, //or 0 => 'max'
+    "watch": true,
+
+    "env": {
+      "NODE_ENV": "production",
+    },
+    "env_dev": {
+      "NODE_ENV": "development"
+    },
+    "env_production" : {
+       "NODE_ENV": "production"
+    },
+    "env_staging" : {
+       "NODE_ENV" : "staging",
+       "TEST"     : true
+    }
+  }]
+}
