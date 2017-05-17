@@ -3,6 +3,7 @@ logs
 results
 *.log
 npm-debug.log*
+yarn-error.log*
 
 # Runtime data
 pids
@@ -48,5 +49,18 @@ benchmarks/graphs
 .idea
 *.iml
 
+# VS Code
+.vscode
+
 # Environment Files
 env.*
+
+# garbage
+garbage
+
+# uploaded files
+uploads
+
+# Private Data
+config_private.js
+private
