@@ -2,7 +2,7 @@ const smWebpack = require('sm-webpack-config');
 
 const command = process.argv[2] || 'default';
 
-const userConfig = {
+const basicConfig = {
 	sourcePath: 'res/basic',
 	destPath: 'static/dist/basic',
 	publicUrl: '/static/dist/basic',
@@ -10,14 +10,14 @@ const userConfig = {
 	appPort: 3000,
 };
 
-if (command === 'default' || command === 'run-user') {
-	smWebpack.runDevServer({config: userConfig}).then(() => {
+if (command === 'default' || command === 'run-basic') {
+	smWebpack.runDevServer({config: basicConfig}).then(() => {
 		console.log("Running Dev Server (Admin)!");
 	});
 }
 else if (command === 'build') {
 	Promise.all([
-		smWebpack.runProdWebpack({config: userConfig}),
+		smWebpack.runProdWebpack({config: basicConfig}),
 	]).then(() => {
 		console.log("Done!");
 	});
