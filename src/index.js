@@ -1,13 +1,15 @@
 import {cfg} from 'sm-utils';
+import {graphqlKoa, graphiqlKoa} from 'graphql-server-koa';
+import {formatError} from 'gqutils';
 
 import Koa from 'koa';
 import Route from 'koa-router';
 import bodyParser from 'koa-body';
 import views from 'koa-views';
-// staticCache is still not updated for koa 2
 import staticCache from 'koa-static-cache';
 
-global.d = require('sm-utils/d');
+import './global';
+import {schema} from './graphql';
 
 const app = new Koa();
 const route = Route();
@@ -19,7 +21,7 @@ app.use(staticCache('./static', {
 	dynamic: true,						// dynamically reload files which are not cached
 }));
 
-app.use(views('./static/dist', {
+app.use(views('./static/dist/basic', {
 	map: {
 		html: 'nunjucks',
 	},
@@ -32,6 +34,15 @@ app.use(bodyParser({
 route.get('/', async (ctx) => {
 	await ctx.render('index');
 });
+
+route.post('/api', graphqlKoa({
+	schema,
+	formatError,
+}));
+
+route.get('/graphiql', graphiqlKoa({
+	endpointURL: '/api',
+}));
 
 app.use(route.routes());
 app.use(route.allowedMethods());

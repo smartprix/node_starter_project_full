@@ -19,23 +19,37 @@
     "lint:fix": "eslint src res/js --fix",
     "test-only": "mocha --compilers js:babel-register test/*.test.js",
     "migrate": "knex migrate:latest",
+    "migrate:create": "knex migrate:make",
     "server": "npm start",
     "basic": "node build.js run-basic",
+    "admin": "node build.js run-admin",
     "precommit": "npm run build && npm test && npm run check-coverage"
   },
   "author": "Hitesh Khandelwal <hitesh@smartprix.com> (http://www.smartprix.com/)",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.16.1",
+    "bluebird": "^3.5.0",
+    "el-admin": "^0.3.2",
+    "element-ui": "^1.3.3",
+    "gqutils": "^0.4.3",
+    "graphql": "^0.9.6",
+    "graphql-server-koa": "^0.7.2",
+    "knex": "^0.13.0",
     "koa": "2.2.0",
     "koa-body": "2.0.1",
     "koa-router": "7.1.1",
     "koa-static-cache": "5.0.1",
     "koa-views": "6.0.2",
     "lodash": "4.17.4",
-    "sm-utils": "git://github.com/smartprix/sm-utils.git",
+    "moment": "^2.18.1",
+    "mysql2": "^1.2.0",
+    "sm-utils": "^2.5.1",
     "vue": "2.3.3",
-    "vue-router": "2.5.3",
-    "vuex": "2.3.1"
+    "vue-router": "^2.5.3",
+    "vuex": "2.3.1",
+    "vutils": "^0.14.1",
+    "xorm": "^0.5.4"
   },
   "devDependencies": {
     "babel-cli": "6.24.1",
@@ -53,7 +67,15 @@
   },
   "eslintConfig": {
     "extends": "smartprix",
-    "rules": {}
+    "globals": {
+      "d": false,
+      "_": false,
+      "moment": false
+    },
+    "rules": {
+      "no-await-in-loop": 0,
+      "no-console": 0
+    }
   },
   "babel": {
     "plugins": [

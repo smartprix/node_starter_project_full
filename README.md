@@ -30,6 +30,8 @@ If you are writing only backend, use http://github.com/smartprix/nodejs_starter_
 #### How To Start:
 * Clone this directory
 * Update dependencies `ncu -u` and then run `yarn`
+* Create a database named test in your mysql server
+* Run `npm run migrate`
 * You are ready. Start writing your code in `src/index.js`
 
 #### Commands:
@@ -40,6 +42,12 @@ npm run lint
 # Run eslint and try to fix linting errors
 npm run lint:fix
 
+# Run migration
+npm run migrate
+
+# Create a new migration
+npm run migrate:create
+
 # Run tests
 npm test
 
@@ -49,6 +57,9 @@ npm run build
 # Start dev server (backend)
 npm start
 
-# Start dev server (frontend) which supports hot reloading
-npm run dev
+# Start dev server (basic frontend)
+npm run basic
+
+# Start dev server (admin frontend)
+npm run admin
 ```
