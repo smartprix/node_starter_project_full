@@ -27,6 +27,20 @@ If you are writing only backend, use http://github.com/smartprix/nodejs_starter_
 * Compiled code (from babel) will be stored in dist directory
 * Keep all your garbage files (temporary testing and all) in garbage directory
 
+#### Setting Up For The First Time
+If you've just installed ubuntu, you can run these commands to install
+various softwares and packages that will help you run and develop this project.
+
+```sh
+sudo apt update -y
+sudo apt install unzip -y
+cd ~
+mkdir setup && cd setup
+wget https://github.com/smartprix/node_starter_project_full/archive/master.zip
+unzip -o master.zip
+bash node_starter_project_full-master/setup/setup.sh
+```
+
 #### How To Start:
 * Clone this directory
 * Update dependencies `ncu -u` and then run `yarn`
