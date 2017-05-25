@@ -116,7 +116,13 @@ sudo apt update -y
 sudo apt install atom -y
 
 # Install Atom Packages
-apm install minimap pigments todo-show split-diff markdown-preview-enhanced linter last-cursor-position language-vue language-postcss highlight-selected git-time-machine git-plus file-icons emmet editorconfig docblockr autocomplete-modules autoclose-html autodetect-indentation atom-ternjs merge-conflicts git-blame language-graphql-lb language-babel minimap-split-diff minimap-find-and-replace minimap-linter minimap-highlight-selected linter-eslint
+apm install minimap pigments todo-show split-diff markdown-preview-enhanced
+apm install linter last-cursor-position language-vue language-postcss highlight-selected
+apm install git-time-machine git-plus file-icons emmet editorconfig
+apm install docblockr autocomplete-modules autoclose-html autodetect-indentation
+apm install atom-ternjs merge-conflicts git-blame language-graphql-lb
+apm install language-babel minimap-split-diff minimap-find-and-replace
+apm install minimap-linter minimap-highlight-selected linter-eslint
 
 # Install VSCode
 wget https://go.microsoft.com/fwlink/?LinkID=760868 -O vscode.deb
