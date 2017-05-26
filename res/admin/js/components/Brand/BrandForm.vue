@@ -65,7 +65,6 @@ export default {
 		return {
 			rules: {
 				name: [{required: true, message: 'Please Enter Name'}],
-				categoryIds: [{type: 'array', required: true, minLength: 1, message: 'Required'}],
 				status: [{required: true, message: 'Please Choose Status'}],
 			},
 			loading: false,

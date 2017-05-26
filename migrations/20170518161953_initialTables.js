@@ -35,11 +35,16 @@ exports.up = function(knex) {
 
 		table.unique('name');
 		table.unique('shortName');
+	})
+	.createTableIfNotExists('BrandCategoryMap', (table) => {
+		table.string('brandId').notNullable();
+		table.string('categoryId').notNullable();
 	});
 };
 
 exports.down = function(knex) {
 	return knex.schema.dropTableIfExists('Store')
 	.dropTableIfExists('Brand')
-	.dropTableIfExists('Category');
+	.dropTableIfExists('Category')
+	.dropTableIfExists('BrandCategoryMap');
 };
