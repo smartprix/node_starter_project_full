@@ -34,15 +34,17 @@ various softwares and packages that will help you run and develop this project.
 ```sh
 sudo apt update -y
 sudo apt install unzip -y
-cd ~
-mkdir setup && cd setup
+cd ~ && mkdir -p setup && cd setup
 wget https://github.com/smartprix/node_starter_project_full/archive/master.zip
 unzip -o master.zip
-bash node_starter_project_full-master/setup/setup.sh
+cd node_starter_project_full-master/setup
+unzip -o ansible.zip
+bash setup.sh
+sudo bash ansible/dev_machine_setup
 ```
 
 #### How To Start:
-* Clone this directory
+* Clone this repository
 * Update dependencies `ncu -u` and then run `yarn`
 * Create a database named test in your mysql server
 * Run `npm run migrate`
