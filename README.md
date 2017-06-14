@@ -38,7 +38,7 @@ cd ~ && mkdir -p setup && cd setup
 wget https://github.com/smartprix/node_starter_project_full/archive/master.zip
 unzip -o master.zip
 cd node_starter_project_full-master/setup
-unzip -o ansible.zip
+unzip -o ansible.zip -d ansible/
 bash setup.sh
 sudo bash ansible/dev_machine_setup
 ```
