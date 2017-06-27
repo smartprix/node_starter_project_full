@@ -8,7 +8,7 @@ const componentMap = {
 };
 
 function openRightModal(component, props) {
-	Vue.bus.$emit('closeOpenRightModal', {component, props});
+	Vue.bus.$emit('openRightModal', {component, props});
 }
 
 function getViewModalFunction(component) {
