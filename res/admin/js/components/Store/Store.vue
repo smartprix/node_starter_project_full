@@ -69,23 +69,23 @@ export default {
 				{type: 'warning'},
 			).then(() => {
 				this.$api.deleteStore(store.id)
-				.then(() => {
-					this.$notify({
-						title: 'Success',
-						message: 'Store Deleted Successfully',
-						type: 'success',
+					.then(() => {
+						this.$notify({
+							title: 'Success',
+							message: 'Store Deleted Successfully',
+							type: 'success',
+						});
+						this.$bus.$emit('storeMutated', store);
+						this.$emit('done');
+					}).catch((res) => {
+						this.$notify({
+							title: 'Danger',
+							message: 'Unable to Delete',
+							type: 'danger',
+						});
+						console.log(res);
+						this.$emit('done');
 					});
-					this.$bus.$emit('storeMutated', store);
-					this.$emit('done');
-				}).catch((res) => {
-					this.$notify({
-						title: 'Danger',
-						message: 'Unable to Delete',
-						type: 'danger',
-					});
-					console.log(res);
-					this.$emit('done');
-				});
 			}).catch(() => {});
 		},
 	},

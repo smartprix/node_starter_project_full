@@ -13,6 +13,6 @@ Model.pickJsonSchemaProperties = false;
 
 export default Model;
 export {
-    Model,
-    knex,
+	Model,
+	knex,
 };

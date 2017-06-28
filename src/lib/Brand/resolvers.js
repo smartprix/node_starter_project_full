@@ -32,8 +32,8 @@ export default {
 			if (args.search) {
 				query.where((q) => {
 					q.whereIn('id', args.search.split(':'))
-					.orWhere('name', 'like', `%${args.search}%`)
-					.orWhere('aliases', 'like', `%${args.search}%`);
+						.orWhere('name', 'like', `%${args.search}%`)
+						.orWhere('aliases', 'like', `%${args.search}%`);
 				});
 			}
 

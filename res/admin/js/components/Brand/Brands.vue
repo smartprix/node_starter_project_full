@@ -79,9 +79,7 @@ import {paginationMixin} from 'vutils';
 
 export default {
 	name: 'Brands',
-	mixins: [
-		paginationMixin(),
-	],
+	mixins: [paginationMixin()],
 
 	data() {
 		return {

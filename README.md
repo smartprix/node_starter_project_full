@@ -45,7 +45,7 @@ sudo bash ansible/dev_machine_setup
 
 #### How To Start:
 * Clone this repository
-* Update dependencies `ncu -u` and then run `yarn`
+* Run `yarn` to install dependencies.
 * Create a database named test in your mysql server
 * Run `npm run migrate`
 * You are ready. Start writing your code in `src/index.js`

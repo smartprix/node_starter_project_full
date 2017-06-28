@@ -154,7 +154,7 @@ export default {
 				for (const option of options) {
 					// this option is already present, no need to query for it
 					if (option[this.valueKey] === this.selection && (
-							option[this.labelKey] === query ||
+						option[this.labelKey] === query ||
 							query === String(this.selection)
 					)) return true;
 				}
@@ -165,7 +165,7 @@ export default {
 				for (const option of options) {
 					// this option is already present, no need to query for it
 					if (option[this.valueKey] === this.selection && (
-							option[this.labelKey] === query ||
+						option[this.labelKey] === query ||
 							query === String(this.selection)
 					)) {
 						this.setOptions(options, query);

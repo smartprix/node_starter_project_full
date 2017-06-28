@@ -69,23 +69,23 @@ export default {
 				{type: 'warning'},
 			).then(() => {
 				this.$api.deleteBrand(brand.id)
-				.then(() => {
-					this.$notify({
-						title: 'Success',
-						message: 'Brand Deleted Successfully',
-						type: 'success',
+					.then(() => {
+						this.$notify({
+							title: 'Success',
+							message: 'Brand Deleted Successfully',
+							type: 'success',
+						});
+						this.$bus.$emit('brandMutated', brand);
+						this.$emit('done');
+					}).catch((res) => {
+						this.$notify({
+							title: 'Danger',
+							message: 'Unable to Delete',
+							type: 'danger',
+						});
+						console.log(res);
+						this.$emit('done');
 					});
-					this.$bus.$emit('brandMutated', brand);
-					this.$emit('done');
-				}).catch((res) => {
-					this.$notify({
-						title: 'Danger',
-						message: 'Unable to Delete',
-						type: 'danger',
-					});
-					console.log(res);
-					this.$emit('done');
-				});
 			}).catch(() => {});
 		},
 	},
