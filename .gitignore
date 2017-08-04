@@ -63,4 +63,5 @@ uploads
 
 # Private Data
 config_private.js
+*.private.*
 private
