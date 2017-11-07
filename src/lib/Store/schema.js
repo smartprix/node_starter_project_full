@@ -1,54 +1,81 @@
-const schema = /* GraphQL */`
-	# @types
-	# Store
-	type Store {
-		id: ID!
-		name: String!
-		shortName: String!
-		link: String!
-		domain: String!
-		status: String!
-		rating: Int!
-		createdAt: String!
-		updatedAt: String!
-	}
+const Store = {
+	graphql: 'type',
+	schema: ['admin'],
+	relayConnection: true,
+	fields: {
+		id: 'ID!',
+		name: 'String!',
+		shortName: 'String!',
+		link: 'String!',
+		domain: 'String!',
+		status: 'String!',
+		rating: 'Int!',
+		createdAt: 'String!',
+		updatedAt: 'String!',
+	},
+};
 
-	@connection(Store)
+const store = {
+	graphql: 'query',
+	schema: ['admin'],
+	name: 'store',
+	type: 'Store',
+	args: {
+		id: 'ID',
+		name: 'String',
+		shortName: 'String',
+		domain: 'String',
+	},
+};
 
-	# @queries
-	store(
-		id: ID,
-		name: String,
-		shortName: String,
-		domain: String,
-	): Store
+const stores = {
+	graphql: 'query',
+	schema: ['admin'],
+	name: 'stores',
+	type: 'StoreConnection',
+	args: {
+		id: 'ID',
+		name: 'String',
+		shortName: 'String',
+		domain: 'String',
+		search: 'String',
+		status: 'String',
+		sort: 'String',
+		order: 'String',
+		paging: 'Default',
+	},
+};
 
-	stores(
-		id: ID,
-		name: String,
-		shortName: String,
-		domain: String,
-		search: String,
-		status: String,
-		sort: String,
-		order: String,
-		paging: Default,
-	): StoreConnection
+const saveStore = {
+	graphql: 'mutation',
+	schema: ['admin'],
+	name: 'saveStore',
+	type: 'Store',
+	args: {
+		id: 'ID',
+		name: 'String',
+		shortName: 'String',
+		link: 'URL',
+		domain: 'String',
+		status: 'String',
+		rating: 'ID',
+	},
+};
 
-	# @mutations
-	saveStore(
-		id: ID,
-		name: String,
-		shortName: String,
-		link: URL,
-		domain: String,
-		status: String,
-		rating: ID,
-	): Store
+const deleteStore = {
+	graphql: 'mutation',
+	schema: ['admin'],
+	name: 'deleteStore',
+	type: 'DeletedItem',
+	args: {
+		id: 'ID',
+	},
+};
 
-	deleteStore(
-		id: ID,
-	): DeletedItem
-`;
-
-export default schema;
+export {
+	Store,
+	store,
+	stores,
+	saveStore,
+	deleteStore,
+};
