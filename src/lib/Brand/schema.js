@@ -1,45 +1,72 @@
-const schema = /* GraphQL */`
-	# @types
-	# Brand
-	type Brand {
-		id: ID!
-		name: String!
-		aliases: [String]
-		status: String!
-		createdAt: String!
-		updatedAt: String!
-		categories: [Category]
-	}
+const Brand = {
+	graphql: 'type',
+	schema: ['admin'],
+	relayConnection: true,
+	fields: {
+		id: 'ID!',
+		name: 'String!',
+		aliases: '[String]',
+		status: 'String!',
+		createdAt: 'String!',
+		updatedAt: 'String!',
+		categories: '[Category]',
+	},
+};
 
-	@connection(Brand)
+const brand = {
+	graphql: 'query',
+	schema: ['admin'],
+	name: 'brand',
+	type: 'Brand',
+	args: {
+		id: 'ID',
+		name: 'String',
+	},
+};
 
-	# @queries
-	brand(
-		id: ID
-		name: String,
-	): Brand
+const brands = {
+	graphql: 'query',
+	schema: ['admin'],
+	name: 'brands',
+	type: 'BrandConnection',
+	args: {
+		id: 'ID',
+		name: 'String',
+		aliases: 'String',
+		search: 'String',
+		status: 'String',
+		paging: 'Default',
+	},
+};
 
-	brands(
-		id: ID,
-		name: String,
-		aliases: String,
-		search: String,
-		status: String,
-		paging: Default,
-	): BrandConnection
+const saveBrand = {
+	graphql: 'mutation',
+	schema: ['admin'],
+	name: 'saveBrand',
+	type: 'Brand',
+	args: {
+		id: 'ID',
+		name: 'String',
+		aliases: '[String]',
+		categoryIds: '[ID]',
+		status: 'String',
+	},
+};
 
-	# @mutations
-	saveBrand(
-		id: ID,
-		name: String,
-		aliases: [String],
-		categoryIds: [ID],
-		status: String,
-	): Brand
+const deleteBrand = {
+	graphql: 'mutation',
+	schema: ['admin'],
+	name: 'deleteBrand',
+	type: 'DeletedItem',
+	args: {
+		id: 'ID',
+	},
+};
 
-	deleteBrand(
-		id: ID,
-	): DeletedItem
-`;
-
-export default schema;
+export {
+	Brand,
+	brand,
+	brands,
+	saveBrand,
+	deleteBrand,
+};
