@@ -9,13 +9,14 @@ const modules = [
 
 const logger = {
 	log(e) {
-		console.log(e);
+		d(e);
 	},
 };
 
-const {schema, pubsub, subscriptionManager} =
+const {schema, pubsub} =
 	makeSchemaFromModules(modules, {
 		baseFolder: path.join(__dirname, '/lib'),
+		schema: ['admin'],
 		logger,
 		allowUndefinedInResolve: false,
 		resolverValidationOptions: {},
@@ -30,5 +31,4 @@ global.pubsub = pubsub;
 export {
 	schema,
 	pubsub,
-	subscriptionManager,
 };

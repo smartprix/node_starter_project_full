@@ -35,10 +35,11 @@ route.get('/', async (ctx) => {
 	await ctx.render('index');
 });
 
-route.post('/api', graphqlKoa({
-	schema,
+route.post('/api', graphqlKoa(ctx => ({
+	schema: schema.admin,
 	formatError,
-}));
+	context: ctx,
+})));
 
 route.get('/graphiql', graphiqlKoa({
 	endpointURL: '/api',
