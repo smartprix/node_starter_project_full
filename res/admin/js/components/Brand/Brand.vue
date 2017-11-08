@@ -3,7 +3,7 @@
 		<div slot="head">
 			<h3>
 				<span v-if="isAdd">Add&nbsp;</span>Brand
-				<small v-if="!isAdd">{{data.name}}</small>
+				<small v-if="!isAdd">{{ data.name }}</small>
 			</h3>
 			<div class="header-right">
 				<el-button
@@ -17,7 +17,7 @@
 		<el-tabs type="card" slot="tabs">
 			<el-tab-pane label="Details" v-loading="loading">
 				<brand-form
-					:formData="brand"
+					:form-data="brand"
 					@done="$emit('done')">
 				</brand-form>
 			</el-tab-pane>

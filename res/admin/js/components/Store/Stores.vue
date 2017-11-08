@@ -6,7 +6,7 @@
 				<el-button
 					type="primary"
 					icon="plus"
-					@click='$view.store()'>Add Store
+					@click="$view.store()">Add Store
 				</el-button>
 			</div>
 		</div>
@@ -38,7 +38,8 @@
 		<el-table
 			:data="displayItems"
 			style="width: 100%"
-			stripe border
+			stripe
+			border
 			:default-sort="defaultSort"
 			@sort-change="handleSortChange"
 			v-loading="loadingSelfData">
@@ -47,7 +48,7 @@
 					<el-button
 						type="primary"
 						size="small"
-						@click='$view.store(scope.row)'>Details
+						@click="$view.store(scope.row)">Details
 					</el-button>
 				</template>
 			</el-table-column>
@@ -64,7 +65,11 @@
 					<a :href="scope.row.link" target="_blank">Link</a>
 				</template>
 			</el-table-column>
-			<el-table-column prop="priceBoost" label="Boost" width="95" sortable></el-table-column>
+			<el-table-column
+				prop="priceBoost"
+				label="Boost"
+				width="95"
+				sortable></el-table-column>
 			<el-table-column prop="rating" label="Rating" width="165">
 				<template scope="scope">
 					<el-rate :value="scope.row.rating / 2" disabled></el-rate>
@@ -83,7 +88,7 @@
 					:page-size="filters.count"
 					layout="total, sizes, prev, pager, next, jumper"
 					:total="stores.totalCount">
-			    </el-pagination>
+				</el-pagination>
 			</div>
 		</div>
 

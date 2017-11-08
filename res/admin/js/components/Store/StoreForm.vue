@@ -1,6 +1,10 @@
 <template>
 	<div v-loading="loading">
-		<el-form ref="form" :model="store" :rules="rules" label-position="top">
+		<el-form
+			ref="form"
+			:model="store"
+			:rules="rules"
+			label-position="top">
 			<el-form-item prop="globalError" class="form-global-error"></el-form-item>
 			<el-row :gutter="12">
 				<el-col :span="12">

@@ -6,7 +6,7 @@
 				<el-button
 					type="primary"
 					icon="plus"
-					@click='$view.brand()'>Add Brand
+					@click="$view.brand()">Add Brand
 				</el-button>
 			</div>
 		</div>
@@ -38,21 +38,22 @@
 		<el-table
 			:data="brands.nodes"
 			style="width: 100%"
-			stripe border
+			stripe
+			border
 			v-loading="loadingSelfData">
 			<el-table-column label="View" align="center" width="90">
 				<template scope="scope">
 					<el-button
 						type="primary"
 						size="small"
-						@click='$view.brand(scope.row)'>Details
+						@click="$view.brand(scope.row)">Details
 					</el-button>
 				</template>
 			</el-table-column>
 			<el-table-column prop="id" label="Id" width="60"></el-table-column>
 			<el-table-column prop="name" label="Name"></el-table-column>
 			<el-table-column prop="aliases" label="Aliases">
-				<template scope="scope">{{ scope.row.aliases.join(', ')}}</template>
+				<template scope="scope">{{ scope.row.aliases.join(', ') }}</template>
 			</el-table-column>
 			<el-table-column prop="status" label="Status" width="100"></el-table-column>
 		</el-table>
@@ -67,7 +68,7 @@
 					:page-size="filters.count"
 					layout="total, sizes, prev, pager, next, jumper"
 					:total="brands.totalCount">
-			    </el-pagination>
+				</el-pagination>
 			</div>
 		</div>
 

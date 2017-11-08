@@ -3,7 +3,7 @@
 		<div slot="head">
 			<h3>
 				<span v-if="isAdd">Add&nbsp;</span>Store
-				<small v-if="!isAdd">{{data.name}}</small>
+				<small v-if="!isAdd">{{ data.name }}</small>
 			</h3>
 			<div class="header-right">
 				<el-button
@@ -17,7 +17,7 @@
 		<el-tabs type="card" slot="tabs">
 			<el-tab-pane label="Details" v-loading="loading">
 				<store-form
-					:formData="store"
+					:form-data="store"
 					@done="$emit('done')">
 				</store-form>
 			</el-tab-pane>
@@ -29,7 +29,7 @@
 import StoreForm from './StoreForm.vue';
 
 export default {
-	name: 'store',
+	name: 'Store',
 	reEvents: {delete: 'done'},
 	components: {
 		StoreForm,
