@@ -1,57 +1,93 @@
-const schema = /* GraphQL */`
-	# @types
-	# Category
-	type Category {
-		id: ID!
-		name: String!
-		shortName: String
-		pluralName: String
-		aliases: [String]
-		parentId: ID
-		status: String!
-		createdAt: String!
-		updatedAt: String!
-		parent: Category
-		parentTree(depth: Int): [Category]
-		children: [Category]
-		childrenTrees(depth: Int): [[Category]]
-	}
+const Category = {
+	graphql: 'type',
+	schema: ['admin'],
+	relayConnection: true,
+	fields: {
+		id: 'ID!',
+		name: 'String!',
+		shortName: 'String',
+		pluralName: 'String',
+		aliases: '[String]',
+		parentId: 'ID',
+		status: 'String!',
+		createdAt: 'String!',
+		updatedAt: 'String!',
+		parent: 'Category',
+		parentTree: {
+			type: '[Category]',
+			args: {
+				depth: 'Int',
+			},
+		},
+		children: '[Category]',
+		childrenTrees: {
+			type: '[[Category]]',
+			args: {
+				depth: 'Int',
+			},
+		},
+	},
+};
 
-	@connection(Category)
+const category = {
+	graphql: 'query',
+	schema: ['admin'],
+	name: 'category',
+	type: 'Category',
+	args: {
+		id: 'ID',
+		name: 'String',
+		shortName: 'String',
+	},
+};
 
-	# @queries
-	category(
-		id: ID
-		name: String,
-		shortName: String,
-	): Category
+const categories = {
+	graphql: 'query',
+	schema: ['admin'],
+	name: 'categories',
+	type: 'CategoryConnection',
+	args: {
+		id: 'ID',
+		name: 'String',
+		shortName: 'String',
+		pluralName: 'String',
+		parentId: 'Int',
+		search: 'String',
+		status: 'String',
+		paging: 'Default',
+	},
+};
 
-	categories(
-		id: ID,
-		name: String,
-		shortName: String,
-		pluralName: String,
-		parentId: Int,
-		search: String,
-		status: String,
-		paging: Default,
-	): CategoryConnection
+const saveCategory = {
+	graphql: 'mutation',
+	schema: ['admin'],
+	name: 'saveCategory',
+	type: 'Category',
+	args: {
+		id: 'ID',
+		name: 'String',
+		shortName: 'String',
+		pluralName: 'String',
+		aliases: '[String]',
+		parentId: 'ID',
+		status: 'String',
+	},
+};
 
-	# @mutations
+const deleteCategory = {
+	graphql: 'mutation',
+	schema: ['admin'],
+	name: 'deleteCategory',
+	type: 'DeletedItem',
+	args: {
+		id: 'ID',
+	},
+};
 
-	saveCategory(
-		id: ID,
-		name: String,
-		shortName: String,
-		pluralName: String,
-		aliases: [String],
-		parentId: ID,
-		status: String
-	): Category
-
-	deleteCategory(
-		id: ID,
-	): DeletedItem
-`;
-
-export default schema;
+export {
+	Category,
+	category,
+	categories,
+	saveCategory,
+	deleteCategory,
+};
