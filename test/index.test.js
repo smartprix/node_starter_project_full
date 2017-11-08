@@ -1,9 +1,10 @@
-var expect = require('chai').expect;
-var my_lib = require('../src/index');
+/* global describe, it */
+
+const expect = require('chai').expect;
+const myLib = require('../src/index'); // eslint-disable-line
 
 describe('my library', () => {
-    it('should work', () => {
-        expect(true).to.be.true;
-    });
+	it('should work', () => {
+		expect(true).to.equal(true);
+	});
 });
-
