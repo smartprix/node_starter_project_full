@@ -42,7 +42,9 @@ const stores = {
 		status: 'String',
 		sort: 'String',
 		order: 'String',
-		paging: 'Default',
+		$default: [
+			'$paging',
+		],
 	},
 };
 
@@ -72,7 +74,7 @@ const deleteStore = {
 	},
 };
 
-export {
+export default {
 	Store,
 	store,
 	stores,

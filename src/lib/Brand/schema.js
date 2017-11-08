@@ -35,7 +35,9 @@ const brands = {
 		aliases: 'String',
 		search: 'String',
 		status: 'String',
-		paging: 'Default',
+		$default: [
+			'$paging',
+		],
 	},
 };
 
@@ -63,7 +65,7 @@ const deleteBrand = {
 	},
 };
 
-export {
+export default {
 	Brand,
 	brand,
 	brands,

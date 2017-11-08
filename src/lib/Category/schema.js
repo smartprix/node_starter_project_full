@@ -54,7 +54,9 @@ const categories = {
 		parentId: 'Int',
 		search: 'String',
 		status: 'String',
-		paging: 'Default',
+		$default: [
+			'$paging',
+		],
 	},
 };
 
@@ -84,7 +86,7 @@ const deleteCategory = {
 	},
 };
 
-export {
+export default {
 	Category,
 	category,
 	categories,
