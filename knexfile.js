@@ -2,14 +2,15 @@ const _ = require('lodash');
 const config = require('./config.js');
 
 const connection = _.merge({
-	port: 3306,
 	database: 'starter',
 }, config.db);
 
+const client = config.db.client || 'pg';
+
 module.exports = {
 	development: {
-		client: 'mysql2',
-		debug: true,
+		client,
+		debug: config.debug,
 		connection,
 		pool: {
 			min: 2,
@@ -21,7 +22,7 @@ module.exports = {
 	},
 
 	staging: {
-		client: 'mysql2',
+		client,
 		connection,
 		pool: {
 			min: 2,
@@ -33,7 +34,7 @@ module.exports = {
 	},
 
 	production: {
-		client: 'mysql2',
+		client,
 		connection,
 		pool: {
 			min: 10,
