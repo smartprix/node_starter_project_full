@@ -44,26 +44,25 @@
 			@sort-change="handleSortChange"
 			v-loading="loadingSelfData">
 			<el-table-column label="View" align="center" width="90">
-				<template scope="scope">
 					<el-button
+						slot-scope="scope"
 						type="primary"
 						size="small"
 						@click="$view.store(scope.row)">Details
 					</el-button>
-				</template>
 			</el-table-column>
 			<el-table-column prop="id" label="Id" width="60"></el-table-column>
 			<el-table-column prop="name" label="Name"></el-table-column>
 			<el-table-column prop="shortName" label="Short Name"></el-table-column>
 			<el-table-column prop="image" label="Logo" width="106">
-				<template scope="scope">
-					<img class="store-logo" v-if="scope.row.image" :src="scope.row.image" />
-				</template>
+					<img
+						slot-scope="scope"
+						class="store-logo"
+						v-if="scope.row.image"
+						:src="scope.row.image" />
 			</el-table-column>
 			<el-table-column prop="link" label="Link" width="70">
-				<template scope="scope">
-					<a :href="scope.row.link" target="_blank">Link</a>
-				</template>
+					<a slot-scope="scope" :href="scope.row.link" target="_blank">Link</a>
 			</el-table-column>
 			<el-table-column
 				prop="priceBoost"
@@ -71,9 +70,7 @@
 				width="95"
 				sortable></el-table-column>
 			<el-table-column prop="rating" label="Rating" width="165">
-				<template scope="scope">
-					<el-rate :value="scope.row.rating / 2" disabled></el-rate>
-				</template>
+					<el-rate slot-scope="scope" :value="scope.row.rating / 2" disabled></el-rate>
 			</el-table-column>
 			<el-table-column prop="status" label="Status" width="100"></el-table-column>
 		</el-table>

@@ -1,5 +1,5 @@
 <template>
-	<component :is="app-layout"></component>
+	<component :is="currentComponent"></component>
 </template>
 
 <script>
@@ -9,7 +9,13 @@ export default {
 	name: 'App',
 
 	components: {
-		AppLayout,
+		appLayout: AppLayout,
+	},
+
+	computed: {
+		currentComponent() {
+			return 'appLayout';
+		},
 	},
 };
 </script>

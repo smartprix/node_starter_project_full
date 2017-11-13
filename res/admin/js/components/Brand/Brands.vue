@@ -42,18 +42,17 @@
 			border
 			v-loading="loadingSelfData">
 			<el-table-column label="View" align="center" width="90">
-				<template scope="scope">
 					<el-button
+						slot-scope="scope"
 						type="primary"
 						size="small"
 						@click="$view.brand(scope.row)">Details
 					</el-button>
-				</template>
 			</el-table-column>
 			<el-table-column prop="id" label="Id" width="60"></el-table-column>
 			<el-table-column prop="name" label="Name"></el-table-column>
 			<el-table-column prop="aliases" label="Aliases">
-				<template scope="scope">{{ scope.row.aliases.join(', ') }}</template>
+				<template slot-scope="scope">{{ scope.row.aliases.join(', ') }}</template>
 			</el-table-column>
 			<el-table-column prop="status" label="Status" width="100"></el-table-column>
 		</el-table>
