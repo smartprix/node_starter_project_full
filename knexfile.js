@@ -5,6 +5,10 @@ const connection = _.merge({
 	database: 'starter',
 }, config.db);
 
+const testConnection = _.merge({
+	database: 'starter_admin',
+}, config.db);
+
 const client = config.db.client || 'pg';
 
 module.exports = {
@@ -43,5 +47,24 @@ module.exports = {
 		migrations: {
 			tableName: 'knex_migrations',
 		},
+		seeds: {
+			directory: './seeds',
+		},
+	},
+
+	test: {
+		client,
+		connection: testConnection,
+		pool: {
+			min: 2,
+			max: 10,
+		},
+		migrations: {
+			tableName: 'knex_migrations',
+		},
+		seeds: {
+			directory: './seeds/test',
+		},
+		debug: false,
 	},
 };

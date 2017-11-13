@@ -9,6 +9,15 @@ const config = {
 		user: 'root',
 		password: 'smartprix',
 	},
+
+	development: {
+		port: 3000,
+	},
+
+	test: {
+		port: 5000,
+		wwwUrl: 'http://localhost:5000',
+	},
 };
 
 // Read private config and merge it with this config
