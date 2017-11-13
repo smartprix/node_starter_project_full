@@ -1,6 +1,9 @@
 const smWebpack = require('sm-webpack-config');
 
+const KnexUtils = require('./src/lib/KnexUtils');
+
 const command = process.argv[2] || 'default';
+const env = process.env.NODE_ENV || 'development';
 
 const basicConfig = {
 	sourcePath: 'res/basic',
@@ -34,5 +37,14 @@ else if (command === 'build') {
 		smWebpack.runProdWebpack({config: adminConfig}),
 	]).then(() => {
 		console.log('Done!');
+	});
+}
+else if (command === 'refresh-db') {
+	KnexUtils.refreshDb(env).then(() => {
+		console.log('Done!');
+		process.exit();
+	}).catch((e) => {
+		console.error(e);
+		process.exit();
 	});
 }
