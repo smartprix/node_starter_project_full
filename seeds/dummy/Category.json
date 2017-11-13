@@ -1,0 +1,185 @@
+{
+"Category": [
+{
+	"id": "1",
+	"name": "Electronic",
+	"shortName": "Electronic",
+	"pluralName": "Electronics",
+	"aliases": "",
+	"parentId": "0",
+	"status": "ACTIVE",
+	"metadata":"{}",
+	"createdAt": "2017-07-06 09:48:43",
+	"updatedAt": "2017-07-06 09:48:43",
+	"deletedAt": null
+}
+, {
+	"id": "2",
+	"name": "Appliance",
+	"shortName": "Appliance",
+	"pluralName": "Appliances",
+	"aliases": "",
+	"parentId": "0",
+	"status": "ACTIVE",
+	"metadata":"{}",
+	"createdAt": "2017-07-06 09:49:09",
+	"updatedAt": "2017-07-06 09:49:09",
+	"deletedAt": null
+}
+, {
+	"id": "3",
+	"name": "Furniture",
+	"shortName": "Furniture",
+	"pluralName": "Furniture",
+	"aliases": "",
+	"parentId": "0",
+	"status": "INACTIVE",
+	"metadata":"{}",
+	"createdAt": "2017-07-06 09:49:57",
+	"updatedAt": "2017-07-06 09:58:25",
+	"deletedAt": null
+}
+, {
+	"id": "4",
+	"name": "Book",
+	"shortName": "Book",
+	"pluralName": "Books",
+	"aliases": "",
+	"parentId": "0",
+	"status": "ACTIVE",
+	"metadata":"{}",
+	"createdAt": "2017-07-06 09:50:17",
+	"updatedAt": "2017-07-06 09:50:17",
+	"deletedAt": null
+}
+, {
+	"id": "5",
+	"name": "mobile",
+	"shortName": "Mobile",
+	"pluralName": "Mobiles",
+	"aliases": "",
+	"parentId": "1",
+	"status": "ACTIVE",
+	"metadata":"{}",
+	"createdAt": "2017-07-06 09:50:44",
+	"updatedAt": "2017-07-06 11:31:09",
+	"deletedAt": null
+}
+, {
+	"id": "6",
+	"name": "tablet",
+	"shortName": "Tab",
+	"pluralName": "Tablets",
+	"aliases": "",
+	"parentId": "1",
+	"status": "ACTIVE",
+	"metadata":"{}",
+	"createdAt": "2017-07-06 09:52:00",
+	"updatedAt": "2017-07-06 11:31:15",
+	"deletedAt": null
+}
+, {
+	"id": "7",
+	"name": "laptop",
+	"shortName": "Laptop",
+	"pluralName": "Laptops",
+	"aliases": "",
+	"parentId": "1",
+	"status": "ACTIVE",
+	"metadata":"{}",
+	"createdAt": "2017-07-06 09:52:50",
+	"updatedAt": "2017-07-06 11:31:19",
+	"deletedAt": null
+}
+, {
+	"id": "8",
+	"name": "camera",
+	"shortName": "Camera",
+	"pluralName": "Cameras",
+	"aliases": "",
+	"parentId": "1",
+	"status": "ACTIVE",
+	"metadata":"{}",
+	"createdAt": "2017-07-06 09:53:08",
+	"updatedAt": "2017-07-06 11:31:23",
+	"deletedAt": null
+}
+, {
+	"id": "9",
+	"name": "television",
+	"shortName": "Television",
+	"pluralName": "Televisions",
+	"aliases": "tv,T.V.",
+	"parentId": "2",
+	"status": "ACTIVE",
+	"metadata":"{}",
+	"createdAt": "2017-07-06 09:54:06",
+	"updatedAt": "2017-07-06 11:31:27",
+	"deletedAt": null
+}
+, {
+	"id": "10",
+	"name": "refrigerator",
+	"shortName": "Fridge",
+	"pluralName": "Refrigerators",
+	"aliases": "",
+	"parentId": "2",
+	"status": "ACTIVE",
+	"metadata":"{}",
+	"createdAt": "2017-07-06 09:55:57",
+	"updatedAt": "2017-07-06 11:31:32",
+	"deletedAt": null
+}
+, {
+	"id": "11",
+	"name": "Air Conditioner",
+	"shortName": "AC",
+	"pluralName": "Air Conditioners",
+	"aliases": "",
+	"parentId": "2",
+	"status": "ACTIVE",
+	"metadata":"{}",
+	"createdAt": "2017-07-06 09:56:46",
+	"updatedAt": "2017-07-06 09:56:46",
+	"deletedAt": null
+}
+, {
+	"id": "12",
+	"name": "Kitchen Appliance",
+	"shortName": "Kitchen Appliance",
+	"pluralName": "Kitchen Appliances",
+	"aliases": "",
+	"parentId": "2",
+	"status": "ACTIVE",
+	"metadata":"{}",
+	"createdAt": "2017-07-06 09:59:38",
+	"updatedAt": "2017-07-06 09:59:38",
+	"deletedAt": null
+}
+, {
+	"id": "13",
+	"name": "Microwave Oven",
+	"shortName": "Microwave",
+	"pluralName": "Microwave Ovens",
+	"aliases": "",
+	"parentId": "12",
+	"status": "ACTIVE",
+	"metadata":"{}",
+	"createdAt": "2017-07-06 10:02:44",
+	"updatedAt": "2017-07-06 10:02:44",
+	"deletedAt": null
+}
+, {
+	"id": "14",
+	"name": "autocare",
+	"shortName": "Autocare",
+	"pluralName": "Autocare",
+	"aliases": "",
+	"parentId": "0",
+	"status": "INACTIVE",
+	"metadata":"{}",
+	"createdAt": "2017-07-06 10:03:55",
+	"updatedAt": "2017-07-06 11:31:38",
+	"deletedAt": null
+}
+]}

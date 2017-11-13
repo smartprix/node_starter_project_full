@@ -1,0 +1,84 @@
+{
+"Brand": [
+{
+	"id": "1",
+	"name": "Apple",
+	"aliases": "",
+	"status": "ACTIVE",
+	"createdAt": "2017-07-06 10:08:32",
+	"updatedAt": "2017-07-06 10:08:32",
+	"deletedAt": null
+}
+, {
+	"id": "2",
+	"name": "Samsung",
+	"aliases": "",
+	"status": "ACTIVE",
+	"createdAt": "2017-07-06 10:09:07",
+	"updatedAt": "2017-07-06 10:11:29",
+	"deletedAt": null
+}
+, {
+	"id": "3",
+	"name": "Canon",
+	"aliases": "",
+	"status": "ACTIVE",
+	"createdAt": "2017-07-06 10:10:13",
+	"updatedAt": "2017-07-06 10:10:13",
+	"deletedAt": null
+}
+, {
+	"id": "4",
+	"name": "Nikon",
+	"aliases": "",
+	"status": "ACTIVE",
+	"createdAt": "2017-07-06 10:10:29",
+	"updatedAt": "2017-07-06 10:10:29",
+	"deletedAt": null
+}
+, {
+	"id": "5",
+	"name": "hewlett packard",
+	"aliases": "hp",
+	"status": "ACTIVE",
+	"createdAt": "2017-07-06 10:11:21",
+	"updatedAt": "2017-07-06 10:11:21",
+	"deletedAt": null
+}
+, {
+	"id": "6",
+	"name": "Motorola",
+	"aliases": "moto",
+	"status": "ACTIVE",
+	"createdAt": "2017-07-06 10:12:38",
+	"updatedAt": "2017-07-06 10:12:44",
+	"deletedAt": null
+}
+, {
+	"id": "7",
+	"name": "Dell",
+	"aliases": "",
+	"status": "ACTIVE",
+	"createdAt": "2017-07-06 10:15:11",
+	"updatedAt": "2017-07-06 10:15:11",
+	"deletedAt": null
+}
+, {
+	"id": "8",
+	"name": "Voltas",
+	"aliases": "",
+	"status": "ACTIVE",
+	"createdAt": "2017-07-06 10:15:59",
+	"updatedAt": "2017-07-06 10:15:59",
+	"deletedAt": null
+}
+, {
+	"id": "9",
+	"name": "Morphy Richards",
+	"aliases": "",
+	"status": "ACTIVE",
+	"createdAt": "2017-07-06 10:16:52",
+	"updatedAt": "2017-07-06 10:16:52",
+	"deletedAt": null
+}
+]}

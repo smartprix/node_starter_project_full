@@ -1,0 +1,79 @@
+{
+"BrandCategoryMap": [
+{
+	"brandId": "1",
+	"categoryId": "1"
+}
+, {
+	"brandId": "1",
+	"categoryId": "5"
+}
+, {
+	"brandId": "1",
+	"categoryId": "6"
+}
+, {
+	"brandId": "1",
+	"categoryId": "7"
+}
+, {
+	"brandId": "3",
+	"categoryId": "1"
+}
+, {
+	"brandId": "3",
+	"categoryId": "8"
+}
+, {
+	"brandId": "4",
+	"categoryId": "1"
+}
+, {
+	"brandId": "4",
+	"categoryId": "8"
+}
+, {
+	"brandId": "5",
+	"categoryId": "1"
+}
+, {
+	"brandId": "5",
+	"categoryId": "6"
+}
+, {
+	"brandId": "5",
+	"categoryId": "7"
+}
+, {
+	"brandId": "5",
+	"categoryId": "5"
+}
+, {
+	"brandId": "2",
+	"categoryId": "2"
+}
+, {
+	"brandId": "6",
+	"categoryId": "6"
+}
+, {
+	"brandId": "7",
+	"categoryId": "6"
+}
+, {
+	"brandId": "7",
+	"categoryId": "7"
+}
+, {
+	"brandId": "7",
+	"categoryId": "5"
+}
+, {
+	"brandId": "8",
+	"categoryId": "11"
+}
+, {
+	"brandId": "9",
+	"categoryId": "13"
+}
+]}
