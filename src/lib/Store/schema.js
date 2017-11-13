@@ -60,7 +60,6 @@ const saveStore = {
 		link: 'URL',
 		domain: 'String',
 		status: 'String',
-		rating: 'ID',
 	},
 };
 

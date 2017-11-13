@@ -48,10 +48,22 @@ route.get('/graphiql', graphiqlKoa({
 app.use(route.routes());
 app.use(route.allowedMethods());
 
-if (require.main === module) {
-	const port = cfg.is_production() ? 80 : 3000;
-	const server = app.listen(port, () => {
-		const address = server.address();
-		console.log(`Server listening on ${address.address}:${address.port}`);
+function runServer() {
+	const port = cfg('port');
+
+	return new Promise((resolve) => {
+		const server = app.listen(port, () => {
+			const address = server.address();
+			const url = `http://${address.address}:${address.port}`;
+			console.log(`Server listening on ${url}`);
+
+			resolve(url);
+		});
 	});
 }
+
+if (require.main === module) {
+	runServer();
+}
+
+module.exports = runServer;
