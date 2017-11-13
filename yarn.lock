@@ -149,6 +149,10 @@ apollo-tracing@^0.1.0:
   dependencies:
     graphql-extensions "^0.0.x"
 
+apollo-utilities@^0.1.1-0:
+  version "0.1.1-1"
+  resolved "https://registry.yarnpkg.com/apollo-utilities/-/apollo-utilities-0.1.1-1.tgz#a637c2a5b49e06f20dd9adf7c55ec1ff69a97592"
+
 aproba@^1.0.3:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/aproba/-/aproba-1.2.0.tgz#6802e6264efd18c790a1b0d517f0f2627bf2c94a"
@@ -825,7 +829,7 @@ babel-plugin-transform-function-bind@^6.22.0:
     babel-plugin-syntax-function-bind "^6.8.0"
     babel-runtime "^6.22.0"
 
-babel-plugin-transform-object-rest-spread@^6.22.0:
+babel-plugin-transform-object-rest-spread@^6.22.0, babel-plugin-transform-object-rest-spread@^6.26.0:
   version "6.26.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-object-rest-spread/-/babel-plugin-transform-object-rest-spread-6.26.0.tgz#0f36692d50fef6b7e2d4b3ac1478137a963b7b06"
   dependencies:
@@ -907,7 +911,7 @@ babel-preset-es2017@^6.24.1:
     babel-plugin-syntax-trailing-function-commas "^6.22.0"
     babel-plugin-transform-async-to-generator "^6.24.1"
 
-babel-preset-stage-0@6.24.1, babel-preset-stage-0@^6.24.1:
+babel-preset-stage-0@6.24.1:
   version "6.24.1"
   resolved "https://registry.yarnpkg.com/babel-preset-stage-0/-/babel-preset-stage-0-6.24.1.tgz#5642d15042f91384d7e5af8bc88b1db95b039e6a"
   dependencies:
@@ -942,7 +946,7 @@ babel-preset-stage-3@^6.24.1:
     babel-plugin-transform-exponentiation-operator "^6.24.1"
     babel-plugin-transform-object-rest-spread "^6.22.0"
 
-babel-register@^6.26.0:
+babel-register@6.26.0, babel-register@^6.26.0:
   version "6.26.0"
   resolved "https://registry.yarnpkg.com/babel-register/-/babel-register-6.26.0.tgz#6ed021173e2fcb486d7acb45c6009a856f647071"
   dependencies:
@@ -2978,18 +2982,26 @@ graphql-extensions@^0.0.x:
     core-js "^2.5.1"
     source-map-support "^0.5.0"
 
-graphql-server-koa@^1.0.5:
+graphql-server-koa@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/graphql-server-koa/-/graphql-server-koa-1.2.0.tgz#c394df7c64c3baded91e6ce608d46850ec10c051"
   dependencies:
     apollo-server-koa "^1.2.0"
 
-graphql-subscriptions@^0.5.0:
+graphql-subscriptions@^0.5.0, graphql-subscriptions@^0.5.4:
   version "0.5.4"
   resolved "https://registry.yarnpkg.com/graphql-subscriptions/-/graphql-subscriptions-0.5.4.tgz#efb9374bdf505acad3c262bcd8bc61da085a198b"
   dependencies:
     es6-promise "^4.1.1"
     iterall "^1.1.3"
+
+graphql-tools@2.6.1:
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/graphql-tools/-/graphql-tools-2.6.1.tgz#9f6d1600951a05b18b83c52986c42eee4fd3cb1b"
+  dependencies:
+    apollo-utilities "^0.1.1-0"
+    deprecated-decorator "^0.1.6"
+    uuid "^3.1.0"
 
 graphql-tools@^1.2.2:
   version "1.2.3"
@@ -3004,7 +3016,7 @@ graphql-type-json@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/graphql-type-json/-/graphql-type-json-0.1.4.tgz#89f13f5d32ce08c9a76c79fdf9c1968384d81a4e"
 
-graphql@^0.11.7:
+graphql@0.11.7:
   version "0.11.7"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-0.11.7.tgz#e5abaa9cb7b7cccb84e9f0836bf4370d268750c6"
   dependencies:
@@ -4664,9 +4676,9 @@ object.pick@^1.2.0:
   dependencies:
     isobject "^3.0.1"
 
-objection@next:
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/objection/-/objection-0.9.0.tgz#45f1b85205274f7ebd506e16be1b2f577b780250"
+objection@^0.8.9, objection@next:
+  version "0.8.9"
+  resolved "https://registry.yarnpkg.com/objection/-/objection-0.8.9.tgz#490bc3ad84fbad1f79830814b8b593d03034a102"
   dependencies:
     ajv "^5.1.1"
     bluebird "^3.5.0"
@@ -7254,13 +7266,12 @@ xml-char-classes@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/xml-char-classes/-/xml-char-classes-1.0.0.tgz#64657848a20ffc5df583a42ad8a277b4512bbc4d"
 
-xorm@^0.6.4:
+xorm@^0.6.5:
   version "0.6.5"
   resolved "https://registry.yarnpkg.com/xorm/-/xorm-0.6.5.tgz#3a6a749452e38bbf81c2e134b64c56b3454d8143"
   dependencies:
     dataloader "^1.3.0"
     lodash "^4.17.4"
-    objection next
 
 xtend@^4.0.0, xtend@~4.0.1:
   version "4.0.1"
