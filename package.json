@@ -33,7 +33,7 @@
     "axios": "^0.17.0",
     "bluebird": "^3.5.0",
     "el-admin": "^0.3.4",
-    "element-ui": "^2.0.3",
+    "element-ui": "^1.4.8",
     "gqutils": "^1.0.14",
     "graphql": "0.11.7",
     "graphql-server-koa": "^1.2.0",
