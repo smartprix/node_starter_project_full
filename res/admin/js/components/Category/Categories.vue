@@ -1,26 +1,27 @@
 <template>
 	<ela-content-layout padding="0">
 		<div slot="head">
-			<h3>Brands</h3>
+			<h3>Categories</h3>
 			<div class="header-right">
 				<el-button
 					type="primary"
 					icon="plus"
-					@click="$view.brand()">Add Brand
+					@click="$view.category()">Add Category
 				</el-button>
 			</div>
 		</div>
 
 		<div slot="filters">
 			<el-row type="flex">
-				<ela-filter-item label="Status" :span="5">
+				<ela-filter-item label="Status" :span="6">
 					<el-select
 						size="small"
 						clearable
+						placeholder="Status"
 						v-model="filters.status"
 						@change="handleFilterChange">
-						<el-option value="Active">Active</el-option>
-						<el-option value="Inactive">Inactive</el-option>
+						<el-option value="ACTIVE" label="Active"></el-option>
+						<el-option value="INACTIVE" label="Inactive"></el-option>
 					</el-select>
 				</ela-filter-item>
 				<ela-filter-item label="Search" :span="6" float="right">
@@ -36,25 +37,47 @@
 		</div>
 
 		<el-table
-			:data="brands.nodes"
+			:data="displayItems"
 			style="width: 100%"
 			stripe
 			border
-			v-loading="loadingSelfData">
-			<el-table-column label="View" align="center" width="90">
+			v-loading="loadingSelfData"
+			@row-dblclick="rowClick">
+			<el-table-column label="View" width="90">
 					<el-button
 						slot-scope="scope"
 						type="primary"
-						size="small"
-						@click="$view.brand(scope.row)">Details
+						icon="edit"
+						size="mini"
+						@click="$view.category(scope.row)">
+						&nbsp;<strong>{{ scope.row.id }}</strong>
 					</el-button>
 			</el-table-column>
-			<el-table-column prop="id" label="Id" width="60"></el-table-column>
 			<el-table-column prop="name" label="Name"></el-table-column>
-			<el-table-column prop="aliases" label="Aliases">
-				<template slot-scope="scope">{{ scope.row.aliases.join(', ') }}</template>
+			<el-table-column label="Parent">
+				<a
+					slot-scope="scope"
+					class="modal-ref"
+					@click="$view.category(scope.row.parent, {fetch: true})"
+					v-if="scope.row.parent">
+					{{ scope.row.parent.name }}
+				</a>
 			</el-table-column>
-			<el-table-column prop="status" label="Status" width="100"></el-table-column>
+			<el-table-column label="Tree">
+				<template slot-scope="scope">
+					<span
+						v-for="(item, i) in scope.row.parentTree"
+						:key="i">
+						<span v-if="i > 0"> &nbsp;&#9656;&nbsp; </span>
+						<a
+							class="modal-ref"
+							@click="$view.category(item, {fetch: true})"
+							v-text="item.name">
+						</a>
+					</span>
+				</template>
+			</el-table-column>
+			<el-table-column prop="status" label="Status"></el-table-column>
 		</el-table>
 
 		<div slot="foot">
@@ -66,44 +89,55 @@
 					:page-sizes="[20, 50, 100, 250, 500]"
 					:page-size="filters.count"
 					layout="total, sizes, prev, pager, next, jumper"
-					:total="brands.totalCount">
+					:total="categories.totalCount">
 				</el-pagination>
 			</div>
 		</div>
-
 	</ela-content-layout>
 </template>
+
 
 <script>
 import {paginationMixin} from 'vutils';
 
 export default {
-	name: 'Brands',
-	mixins: [paginationMixin()],
+	name: 'Categories',
+	mixins: [
+		paginationMixin(),
+	],
 
 	data() {
 		return {
-			brands: {},
 			filters: {
 				search: '',
 				status: '',
 				page: 1,
 				count: 20,
 			},
+			categories: {},
 		};
 	},
 
+	computed: {
+		displayItems() {
+			return this.categories.nodes;
+		},
+	},
+
 	methods: {
+		rowClick(row) {
+			this.$router.push({path: '/storeProducts', query: {categoryId: row.id}});
+		},
+
 		loadSelfData(filters) {
-			return this.$api.getBrands(filters).then((brands) => {
-				console.log(brands);
-				this.brands = brands;
+			return this.$api.getCategories(filters).then((categories) => {
+				this.categories = categories;
 			});
 		},
 	},
 
 	events: {
-		brandMutated() {
+		categoryMutated() {
 			this.reloadSelfData();
 		},
 	},

@@ -8,6 +8,7 @@ import ElAdmin from 'el-admin';
 import './polyfill';
 import App from './App.vue';
 import router from './router';
+import store from './vuex';
 import modalViews from './modalViews';
 import * as API from './api';
 
@@ -43,6 +44,7 @@ Vue.prototype.$utils = {
 
 /* eslint-disable no-new */
 new Vue({
+	store,
 	router,
 	el: '#app',
 	render: h => h(App),

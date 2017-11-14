@@ -3,6 +3,8 @@
 </template>
 
 <script>
+import {mapState} from 'vuex';
+import Login from './components/Login.vue';
 import AppLayout from './components/AppLayout.vue';
 
 export default {
@@ -10,11 +12,22 @@ export default {
 
 	components: {
 		appLayout: AppLayout,
+		login: Login,
+	},
+
+	created() {
+		if (!this.user) {
+			this.$store.dispatch('me');
+		}
 	},
 
 	computed: {
+		...mapState(['user']),
+
 		currentComponent() {
-			return 'appLayout';
+			if (this.user) return 'appLayout';
+
+			return 'login';
 		},
 	},
 };

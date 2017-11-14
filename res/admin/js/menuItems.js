@@ -11,6 +11,14 @@ const sideMenuItems = [
 		text: 'Brands',
 		link: '/brands',
 	},
+	{
+		text: 'Categories',
+		link: '/categories',
+	},
+	{
+		text: 'Users',
+		link: '/users',
+	},
 ];
 
 export default sideMenuItems;
