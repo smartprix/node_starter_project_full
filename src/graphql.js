@@ -5,6 +5,7 @@ const modules = [
 	'Store',
 	'Category',
 	'Brand',
+	'User',
 ];
 
 const logger = {

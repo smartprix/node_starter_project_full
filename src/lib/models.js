@@ -8,6 +8,8 @@ const models = [
 	'Category',
 	'Brand',
 	'KnexUtils',
+	'User',
+	'Request',
 ];
 
 const modelMap = {};

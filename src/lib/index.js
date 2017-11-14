@@ -6,6 +6,7 @@ const models = [
 	'Category',
 	'Utils',
 	'Brand',
+	'User',
 ];
 
 const exported = {};
