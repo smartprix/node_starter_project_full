@@ -1,0 +1,82 @@
+{
+"User": [
+{
+	"id": "1",
+	"username": "admin",
+	"email": "admin@smartprix.com",
+	"phone": "9876543234",
+	"password": "1YV6o3pzJXhnIafmg8il2Qgaq_xwJBEeWqp85BhnFElB6L-eeZ",
+	"name": "admin",
+	"status": "active",
+	"createdAt": "2017-09-19 14:11:45.15071+05:30",
+	"updatedAt": "2017-09-19 14:11:45.15071+05:30",
+	"deletedAt": null
+}
+, {
+	"id": "2",
+	"username": "abc",
+	"email": "abc@smartprix.com",
+	"phone": "8374657383",
+	"password": "1YV6o3pzJXhnIafmg8il2Qgaq_xwJBEeWqp85BhnFElB6L-eeZ",
+	"name": "abc",
+	"status": "active",
+	"createdAt": "2017-09-19 14:12:22.061714+05:30",
+	"updatedAt": "2017-09-19 14:12:22.061714+05:30",
+	"deletedAt": null
+}, {
+	"id": "3",
+	"username": "user1",
+	"email": "user1@smartprix.com",
+	"phone": "8374657383",
+	"password": "1YV6o3pzJXhnIafmg8il2Qgaq_xwJBEeWqp85BhnFElB6L-eeZ",
+	"name": "user1",
+	"status": "active",
+	"createdAt": "2017-09-19 14:12:22.061714+05:30",
+	"updatedAt": "2017-09-19 14:12:22.061714+05:30",
+	"deletedAt": null
+}, {
+	"id": "4",
+	"username": "user2",
+	"email": "user2@smartprix.com",
+	"phone": "8374657383",
+	"password": "1YV6o3pzJXhnIafmg8il2Qgaq_xwJBEeWqp85BhnFElB6L-eeZ",
+	"name": "user2",
+	"status": "active",
+	"createdAt": "2017-09-19 14:12:22.061714+05:30",
+	"updatedAt": "2017-09-19 14:12:22.061714+05:30",
+	"deletedAt": null
+}, {
+	"id": "5",
+	"username": "user3",
+	"email": "user3@smartprix.com",
+	"phone": "8374657383",
+	"password": "1YV6o3pzJXhnIafmg8il2Qgaq_xwJBEeWqp85BhnFElB6L-eeZ",
+	"name": "user3",
+	"status": "active",
+	"createdAt": "2017-09-19 14:12:22.061714+05:30",
+	"updatedAt": "2017-09-19 14:12:22.061714+05:30",
+	"deletedAt": null
+}, {
+	"id": "6",
+	"username": "user4",
+	"email": "user4@smartprix.com",
+	"phone": "8374657383",
+	"password": "1YV6o3pzJXhnIafmg8il2Qgaq_xwJBEeWqp85BhnFElB6L-eeZ",
+	"name": "user4",
+	"status": "active",
+	"createdAt": "2017-09-19 14:12:22.061714+05:30",
+	"updatedAt": "2017-09-19 14:12:22.061714+05:30",
+	"deletedAt": null
+}, {
+	"id": "7",
+	"username": "user5",
+	"email": "user5@smartprix.com",
+	"phone": "8374657383",
+	"password": "1YV6o3pzJXhnIafmg8il2Qgaq_xwJBEeWqp85BhnFElB6L-eeZ",
+	"name": "user5",
+	"status": "active",
+	"createdAt": "2017-09-19 14:12:22.061714+05:30",
+	"updatedAt": "2017-09-19 14:12:22.061714+05:30",
+	"deletedAt": null
+}
+]}
