@@ -10,6 +10,8 @@ import staticCache from 'koa-static-cache';
 
 import './global';
 import {schema} from './graphql';
+import {Request} from './lib/models';
+import installRoutes from './routes';
 
 const app = new Koa();
 const route = Route();
@@ -30,6 +32,9 @@ app.use(views('./static/dist/basic', {
 app.use(bodyParser({
 	multipart: true,
 }));
+app.use(Request.middleware());
+
+installRoutes(app);
 
 route.get('/', async (ctx) => {
 	await ctx.render('index');
