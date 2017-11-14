@@ -18,6 +18,8 @@ const config = {
 		port: 5000,
 		wwwUrl: 'http://localhost:5000',
 	},
+
+	encryptionKey: 'is73SCNDSt0jVFoZAVEFX31Ry1UJYU',
 };
 
 // Read private config and merge it with this config
