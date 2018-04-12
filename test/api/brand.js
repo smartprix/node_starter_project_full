@@ -95,7 +95,7 @@ const saveBrand = {
 
 const deleteBrand = {
 	mutation: `mutation {
-		deleteBrand(id: 1) {
+		deleteBrand(id: 6) {
 			id
 		}
 	}`,

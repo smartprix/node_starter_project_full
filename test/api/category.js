@@ -86,7 +86,7 @@ const saveCategory = {
 
 const deleteCategory = {
 	mutation: `mutation {
-		deleteCategory(id: 1) {
+		deleteCategory(id: 7) {
 			id
 		}
 	}`,
@@ -95,7 +95,6 @@ const deleteCategory = {
 				name
 				shortName
 				pluralName
-				parent
 				status
 			}
 		}`,

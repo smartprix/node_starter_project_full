@@ -51,7 +51,7 @@ export default {
 	},
 
 	Mutation: {
-		saveStore(root, store) {
+		async saveStore(root, store) {
 			return Store.query().saveAndFetch(store);
 		},
 

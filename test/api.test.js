@@ -77,16 +77,13 @@ function testMutations(item) {
 describe('API testing', () => {
 	describe('Queries testing', () => {
 		for (let item in queries) {
-				testQueries(item);
+			testQueries(item);
 		}
 	});
 
 	describe('Mutations testing', function () {
 		for (let item in mutations) {
-				testMutations(item);
+			testMutations(item);
 		}
-
-		setTimeout(function () {
-		}, 500);
 	});
 });

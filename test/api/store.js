@@ -15,13 +15,13 @@ const store = {
 
 const stores = {
 	query: `query {
-stores {
-nodes {
-name
-link
-}
-}
-}`,
+		stores (first: 5){
+			nodes {
+				name
+				link
+			}
+		}
+	}`,
 	expect: {
 		nodes: [
 			{
@@ -44,37 +44,25 @@ link
 				name: 'infibeam',
 				link: 'https://www.infibeam.com/',
 			},
-			{
-				name: 'paytm',
-				link: 'http://www.paytm.com',
-			},
-			{
-				name: 'jabong',
-				link: 'http://www.jabong.com',
-			},
-			{
-				name: 'myntra',
-				link: 'https://www.myntra.com',
-			},
 		],
 	},
 };
 
 const saveStore = {
 	mutation: `mutation {
-saveStore(name: "Tata Cliq", shortName: "TC", link: "http://tatacliq.com", domain: "tatacliq.com", status: "ACTIVE") {
-id
-}
-}`,
+		saveStore(name: "Tata Cliq", shortName: "TC", link: "http://tatacliq.com", domain: "tatacliq.com", status: "ACTIVE") {
+			id
+		}
+	}`,
 	query: id => `query {
-store(id: ${id}) {
-name
-shortName
-link
-domain
-status
-}
-}`,
+		store(id: ${id}) {
+			name
+			shortName
+			link
+			domain
+			status
+		}
+	}`,
 	expect: {
 		store: {
 			name: 'Tata Cliq',
@@ -88,20 +76,20 @@ status
 
 const deleteStore = {
 	mutation: `mutation {
-deleteStore(id: 1) {
-id
-}
-}`,
+		deleteStore(id: 8) {
+			id
+		}
+	}`,
 	query: id => `query {
-store(id: ${id}) {
-id
-name
-shortName
-link
-domain
-status
-}
-}`,
+		store(id: ${id}) {
+			id
+			name
+			shortName
+			link
+			domain
+			status
+		}
+	}`,
 	expect: {
 		store: null,
 	},
