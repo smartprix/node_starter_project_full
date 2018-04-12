@@ -1,5 +1,4 @@
 import {Model} from 'xorm';
-import {Product} from '../models';
 import CategoryExtractor from './CategoryExtractor';
 
 const stringRequired = {
@@ -35,7 +34,7 @@ class Category extends Model {
 	}
 
 	/**
-	 * @return {Array} categoryIds array of all categories id fetched from DB.
+	 * @return {Array} categoryIds array of all categories' id fetched from DB.
 	 */
 	static async getAllIds() {
 		const categories = await Category.query().select('id');
@@ -115,14 +114,7 @@ class Category extends Model {
 		return childrenTrees;
 	}
 
-	// function get all products of a category.
-	async getAllProducts() {
-		const query = Product.query();
-		const products = await query.where('categoryId', this.id);
-		return products;
-	}
-
-	// // function to get instance of CategoryExtractor class.
+	// function to get instance of CategoryExtractor class.
 	static async getExtractor() {
 		const categories = await this.query()
 			.eager('[parent.^]')
