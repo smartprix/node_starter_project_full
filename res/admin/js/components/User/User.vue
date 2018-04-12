@@ -8,7 +8,7 @@
 			<div class="header-right">
 				<el-button
 					type="danger"
-					icon="delete"
+					icon="el-icon-delete"
 					@click="deleteUser(data)"
 					v-if="!isAdd">
 				</el-button>

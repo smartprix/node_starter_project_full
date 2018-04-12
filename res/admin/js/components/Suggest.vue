@@ -155,7 +155,7 @@ export default {
 					// this option is already present, no need to query for it
 					if (option[this.valueKey] === this.selection && (
 						option[this.labelKey] === query ||
-							query === String(this.selection)
+						query === String(this.selection)
 					)) return true;
 				}
 			}
@@ -166,7 +166,7 @@ export default {
 					// this option is already present, no need to query for it
 					if (option[this.valueKey] === this.selection && (
 						option[this.labelKey] === query ||
-							query === String(this.selection)
+						query === String(this.selection)
 					)) {
 						this.setOptions(options, query);
 						return true;
@@ -194,8 +194,7 @@ export default {
 		},
 
 		setOptions(options, query) {
-			this.options = this.extraOptionsParsed.filter(option =>
-				new RegExp(query, 'i').test(option[this.valueKey])
+			this.options = this.extraOptionsParsed.filter(option => new RegExp(query, 'i').test(option[this.valueKey])
 			).concat(options);
 		},
 	},

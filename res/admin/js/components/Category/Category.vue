@@ -8,7 +8,7 @@
 			<div class="header-right">
 				<el-button
 					type="danger"
-					icon="delete"
+					icon="el-icon-delete"
 					@click="deleteCategory(data)"
 					v-if="!isAdd">
 				</el-button>
@@ -92,6 +92,13 @@ export default {
 		},
 	},
 
+	watch: {
+		activeTab(val) {
+			if (val === 'children') this.loadChildren();
+			else if (val === 'tree') this.loadChildrenTrees();
+		},
+	},
+
 	created() {
 		this.loadCategory();
 	},
@@ -147,13 +154,6 @@ export default {
 						this.$emit('done');
 					});
 			}).catch(() => {});
-		},
-	},
-
-	watch: {
-		activeTab(val) {
-			if (val === 'children') this.loadChildren();
-			else if (val === 'tree') this.loadChildrenTrees();
 		},
 	},
 };

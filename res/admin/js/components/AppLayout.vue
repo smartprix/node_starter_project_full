@@ -5,14 +5,14 @@
 				<ela-menu-items :items="headerMenuItems" mode="horizontal"></ela-menu-items>
 			</div>
 			<div class="header-right">
-				<el-input icon="search" placeholder="Search" style="width: 300px;"></el-input>
+				<el-input icon="el-icon-search" placeholder="Search" style="width: 300px;"></el-input>
 				<ela-menu-items :items="userMenuItems" mode="horizontal"></ela-menu-items>
 			</div>
 		</div>
 
 		<div slot="sidebar">
 			<div class="logo">
-				<img src="~img/logo.png" height="60" class="logo"/>
+				<img src="~img/logo.png" height="60" class="logo" />
 			</div>
 			<ela-menu-items :items="sideMenuItems"></ela-menu-items>
 		</div>

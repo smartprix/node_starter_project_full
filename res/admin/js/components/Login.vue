@@ -2,7 +2,7 @@
 	<div>
 		<el-row type="flex" justify="center">
 			<div class="logo">
-				<img src="../../img/logo.png" height="60" class="logo"/>
+				<img src="../../img/logo.png" height="60" class="logo" />
 			</div><br />
 		</el-row>
 		<el-row type="flex" justify="center">
@@ -27,9 +27,9 @@
 					</el-form-item>
 					<el-form-item label="Email Id" prop="username">
 						<el-input
-						v-model="userData.username"
-						placeholder="Enter emailId"
-						@keyup.native.enter="onSubmit"></el-input>
+							v-model="userData.username"
+							placeholder="Enter emailId"
+							@keyup.native.enter="onSubmit"></el-input>
 					</el-form-item>
 					<el-form-item label="Password" prop="password">
 						<el-input

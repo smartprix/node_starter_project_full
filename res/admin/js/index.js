@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import ElementUI from 'element-ui';
 import locale from 'element-ui/lib/locale/lang/en';
-import 'element-ui/lib/theme-default/index.css';
+import 'element-ui/lib/theme-chalk/index.css';
 import VueUtils from 'vutils';
 import ElAdmin from 'el-admin';
 

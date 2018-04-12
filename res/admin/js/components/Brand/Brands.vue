@@ -5,7 +5,7 @@
 			<div class="header-right">
 				<el-button
 					type="primary"
-					icon="plus"
+					icon="el-icon-plus"
 					@click="$view.brand()">Add Brand
 				</el-button>
 			</div>
@@ -25,7 +25,7 @@
 				</ela-filter-item>
 				<ela-filter-item label="Search" :span="6" float="right">
 					<el-input
-						icon="search"
+						icon="el-icon-search"
 						size="small"
 						v-model="filters.search"
 						@click="handleFilterChange"
@@ -42,12 +42,12 @@
 			border
 			v-loading="loadingSelfData">
 			<el-table-column label="View" align="center" width="90">
-					<el-button
-						slot-scope="scope"
-						type="primary"
-						size="small"
-						@click="$view.brand(scope.row)">Details
-					</el-button>
+				<el-button
+					slot-scope="scope"
+					type="primary"
+					size="small"
+					@click="$view.brand(scope.row)">Details
+				</el-button>
 			</el-table-column>
 			<el-table-column prop="id" label="Id" width="60"></el-table-column>
 			<el-table-column prop="name" label="Name"></el-table-column>

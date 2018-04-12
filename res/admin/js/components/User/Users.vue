@@ -5,7 +5,7 @@
 			<div class="header-right">
 				<el-button
 					type="primary"
-					icon="plus"
+					icon="el-icon-plus"
 					@click="$view.user()">Add User
 				</el-button>
 			</div>
@@ -26,7 +26,7 @@
 
 				<ela-filter-item label="Search" :span="6" float="right">
 					<el-input
-						icon="search"
+						icon="el-icon-search"
 						size="small"
 						v-model="filters.search"
 						@click="handleFilterChange"
@@ -43,22 +43,22 @@
 			border
 			v-loading="loadingSelfData">
 			<el-table-column label="View" align="center" width="70">
-					<el-button
-						slot-scope="scope"
-						type="primary"
-						size="small"
-						icon="edit"
-						@click="$view.user(scope.row)">
-					</el-button>
+				<el-button
+					slot-scope="scope"
+					type="primary"
+					size="small"
+					icon="el-icon-edit"
+					@click="$view.user(scope.row)">
+				</el-button>
 			</el-table-column>
 			<el-table-column prop="image" label="Image" width="70">
-					<a slot-scope="scope" :href="scope.row.image" target="_blank">
-						<img
-							:src="scope.row.image"
-							v-if="scope.row.image"
-							width="40"
-							height="40"/>
-					</a>
+				<a slot-scope="scope" :href="scope.row.image" target="_blank">
+					<img
+						:src="scope.row.image"
+						v-if="scope.row.image"
+						width="40"
+						height="40" />
+				</a>
 			</el-table-column>
 			<el-table-column prop="id" label="Id" width="60"></el-table-column>
 			<el-table-column prop="name" label="Name"></el-table-column>

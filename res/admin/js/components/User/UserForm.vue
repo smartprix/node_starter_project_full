@@ -65,7 +65,7 @@
 							<suggest
 								item="Roles"
 								multiple
-								v-model="user.roleIds"/>
+								v-model="user.roleIds" />
 						</el-form-item>
 					</el-col>
 					<el-col :span="8">
@@ -123,7 +123,7 @@
 				</el-row>
 
 				<el-form-item label="Profile Picture URL" prop="image">
-						<el-input v-model.trim="user.image"></el-input>
+					<el-input v-model.trim="user.image"></el-input>
 				</el-form-item>
 			</ela-fieldset>
 

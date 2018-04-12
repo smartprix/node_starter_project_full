@@ -5,7 +5,7 @@
 			<div class="header-right">
 				<el-button
 					type="primary"
-					icon="plus"
+					icon="el-icon-plus"
 					@click="$view.category()">Add Category
 				</el-button>
 			</div>
@@ -26,7 +26,7 @@
 				</ela-filter-item>
 				<ela-filter-item label="Search" :span="6" float="right">
 					<el-input
-						icon="search"
+						icon="el-icon-search"
 						size="small"
 						v-model="filters.search"
 						@click="handleFilterChange"
@@ -44,14 +44,14 @@
 			v-loading="loadingSelfData"
 			@row-dblclick="rowClick">
 			<el-table-column label="View" width="90">
-					<el-button
-						slot-scope="scope"
-						type="primary"
-						icon="edit"
-						size="mini"
-						@click="$view.category(scope.row)">
-						&nbsp;<strong>{{ scope.row.id }}</strong>
-					</el-button>
+				<el-button
+					slot-scope="scope"
+					type="primary"
+					icon="el-icon-edit"
+					size="mini"
+					@click="$view.category(scope.row)">
+					&nbsp;<strong>{{ scope.row.id }}</strong>
+				</el-button>
 			</el-table-column>
 			<el-table-column prop="name" label="Name"></el-table-column>
 			<el-table-column label="Parent">
