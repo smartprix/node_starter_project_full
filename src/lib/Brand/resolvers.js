@@ -73,6 +73,6 @@ export default {
 			return brand.aliases.split(',');
 		},
 
-		categories: Brand.getRelationResolver('categories'),
+		categories: brand => brand.loadByRelation('categories'),
 	},
 };

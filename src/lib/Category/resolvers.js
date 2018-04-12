@@ -69,13 +69,13 @@ export default {
 			return brand.aliases.split(',');
 		},
 
-		parent: Category.getRelationResolver('parent'),
+		parent: category => category.loadByRelation('parent'),
 
 		async parentTree(category, {depth}) {
 			return category.getParentTree(depth);
 		},
 
-		children: Category.getRelationResolver('children'),
+		children: category => category.loadByRelation('children'),
 
 		async childrenTrees(category, {depth}) {
 			return category.getChildrenTrees(depth);

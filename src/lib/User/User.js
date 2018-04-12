@@ -27,10 +27,6 @@ class User extends Model {
 		return _.last(this.name.split(' '));
 	}
 
-	static async getById(id) {
-		return this.query().findById(id);
-	}
-
 	static async getByUsername(username) {
 		return this.query()
 			.where('email', username)

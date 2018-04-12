@@ -100,7 +100,7 @@ export default User => class Auth extends User {
 
 	static async loginUsingToken(token) {
 		const id = this.getIdFromLoginToken(token);
-		const user = await this.getById(id);
+		const user = await this.loadById(id);
 		if (!user) {
 			throw new User.Error('invalid token');
 		}
