@@ -102,6 +102,123 @@ You can define `GraphQL` *schemas* and *resolvers* for queries and mutations rel
 
 The `makeSchemaFromModules` function from [`gqutils`](https://github.com/smartprix/gqutils) creates the schemas on the basis of your schema definitions and associates the resolvers wherever required. This process of creation of schemas is performed in `src/graphql.js` file. So you would want to list your module in that file.
 
+Following is a simple example of how each of the above mentioned files might look
+
+##### Employee.js (the Model)
+```sh
+import {Model} from 'xorm'; // import the 'Model' class from xorm
+
+class Employee extends Model { // our model extends the 'Model' class
+	static softDelete = true; // this is an added utility, you can read more about this in xorm
+
+	// this jsonSchema will be used to validate the input
+    	// whenever an instance of this model will be created
+	static jsonSchema = {
+		type: 'object',
+		properties: {
+			id: {type: 'string', required: true},
+			name: {type: 'string', required: true, minLength: 1},
+		},
+	};
+
+	// these are the relationships which this model has
+	static $relations() {
+		this.belongsTo('Employee', {
+			name: 'supervisor',
+			joinFrom: 'Employee.supervisorId',
+			joinTo: 'Employee.id',
+		});
+	}
+}
+
+export default Employee;
+```
+
+##### schema.js (the schemas)
+```sh
+// this defines a graphql type
+const Employee = {
+	graphql: 'type',
+	schema: ['admin'],
+	fields: {
+		id: 'ID!',
+		name: 'String!',
+		address: 'String',
+		post: 'String',
+		supervisorId: 'ID',
+		supervisor: 'Employee',
+		createdAt: 'String!',
+		updatedAt: 'String!',
+	},
+};
+
+// a graphql query
+const getEmployee = {
+	graphql: 'query',
+	schema: ['admin'],
+	name: 'employee',
+	type: 'Employee',
+	args: {
+		$default: ['id', 'name'],
+	},
+};
+
+// a graphql mutation
+const saveEmployee = {
+	graphql: 'mutation',
+	schema: ['admin'],
+	type: 'Employee',
+	args: {
+		$default: [
+			'id',
+			'name',
+			'address',
+			'post',
+		],
+		supervisorId: 'ID',
+	},
+};
+
+const deleteEmployee = {
+	graphql: 'mutation',
+	schema: ['admin'],
+	type: 'DeletedItem',
+	args: {
+		id: 'ID!',
+	},
+};
+
+export default {
+	Employee,
+	getEmployee,
+	saveEmployee,
+	deleteEmployee,
+};
+```
+
+##### resolvers.js (the resolvers)
+```sh
+import {Employee} from '../models';
+
+export default {
+	Query: {
+		employee: Employee.getFindOneResolver(),
+	},
+
+	Mutation: {
+		async saveEmployee(root, employee) {
+			return Employee.query().saveAndFetch(employee);
+		},
+
+		deleteEmployee: Employee.getDeleteByIdResolver(),
+	},
+
+	Employee: {
+		supervisor: employee => employee.loadByRelation('supervisor'),
+	},
+};
+```
+
 For more information/examples on how you should define the *schemas*, you can go to https://github.com/smartprix/gqutils.
 
 ### Frontend
