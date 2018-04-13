@@ -87,4 +87,17 @@ The configuration options can be written in `config.js` and `private/config.js`.
 
 Values from the config can be accessed via `cfg(optionToBeRead)`. You can also provide a default value (such as `cfg(foo, 'bar')`) while accessing any of the options. If the key/option is not found in the config, then the default value will be returned (thus, in case `foo` is not present in the merged config the `'bar'` will be returned).
 
-`cfg` also has functions such as `isDev`, `isProd`, `isTest`, etc. which return a `true/false` on the basis of the current process' (node) environment.
+`cfg` also has functions such as `isDev`, `isProd`, `isTest`, etc. which returns `true/false` on the basis of the current process' (node) environment.
+
+#### Adding a new Model:
+We use the [`xorm`](https://github.com/smartprix/xorm) ORM, which is based on [`ObjectionJS`](https://github.com/Vincit/objection.js/ "ObjectionJS GitHub Repo").
+
+`xorm` provides with a `Model` class which is basically a wrapper for the `Model` class from `ObjectionJS` with some added utilities (like *soft delete*, etc). Models can optionally define a `jsonSchema` object that is used for input validation. All your relationships can be defined using the static `relationMappings` property (as done for ObjectionJS models) or in the `$relations` method (provided by `xorm`).
+
+The `src/lib` folder has a `models.js` file which is used to export the models to other places in the project. You can list your model in that file so that you can import models from `src/lib/models`.
+
+You can define `GraphQL` *schemas* and *resolvers* for queries and mutations related to your model in the same module as your model and export them as `schema` and `resolvers` respectively.
+
+The `makeSchemaFromModules` function from [`gqutils`](https://github.com/smartprix/gqutils) creates the schemas on the basis of your schema definitions and associates the resolvers wherever required. This process of creation of schemas is performed in `src/graphql.js` file. So you would want to list your module in that file.
+
+For more information/examples on how you should define the *schemas*, you can go to https://github.com/smartprix/gqutils.
