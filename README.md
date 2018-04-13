@@ -89,6 +89,7 @@ Values from the config can be accessed via `cfg(optionToBeRead)`. You can also p
 
 `cfg` also has functions such as `isDev`, `isProd`, `isTest`, etc. which returns `true/false` on the basis of the current process' (node) environment.
 
+### Backend
 #### Adding a new Model:
 We use the [`xorm`](https://github.com/smartprix/xorm) ORM, which is based on [`ObjectionJS`](https://github.com/Vincit/objection.js/ "ObjectionJS GitHub Repo").
 
@@ -96,8 +97,22 @@ We use the [`xorm`](https://github.com/smartprix/xorm) ORM, which is based on [`
 
 The `src/lib` folder has a `models.js` file which is used to export the models to other places in the project. You can list your model in that file so that you can import models from `src/lib/models`.
 
+#### Schemas and Resolvers:
 You can define `GraphQL` *schemas* and *resolvers* for queries and mutations related to your model in the same module as your model and export them as `schema` and `resolvers` respectively.
 
 The `makeSchemaFromModules` function from [`gqutils`](https://github.com/smartprix/gqutils) creates the schemas on the basis of your schema definitions and associates the resolvers wherever required. This process of creation of schemas is performed in `src/graphql.js` file. So you would want to list your module in that file.
 
 For more information/examples on how you should define the *schemas*, you can go to https://github.com/smartprix/gqutils.
+
+### Frontend
+We use [`VueJS`](https://github.com/vuejs/vue) for the frontend.
+
+The vue components go into the `res/js/components` folder. We use the [`single-file component`](https://vuejs.org/v2/guide/single-file-components.html) design, i.e. the template, script and style all go into the same file.
+
+Most of the components in the frontend are added in sets of three (for example, `Employee.vue`, `Employees.vue`, `EmployeeForm.vue`).
+
+* `Employees.vue` - This component will have a list of employees with an option to edit any of the existing employees or another option to add a new employee. Clicking on any of these two options will cause the new component to open in a right modal.
+* `Employee.vue` - This component contains the data of a particular employee (and generally contains the `EmployeeForm` component along with other components if required). It opens whenever you click on the edit option for any of the employees in the `Employees` component.
+* `EmployeeForm.vue` - This component contains the form which contains the data.
+
+All requests to the server are handled using the `$api` object. All api functions go inside the `res/js/api` folders. To make an api call you can do `this.$api.nameOfTheApiFunction` inside your components.
