@@ -233,3 +233,374 @@ Most of the components in the frontend are added in sets of three (for example, 
 * `EmployeeForm.vue` - This component contains the form which contains the data.
 
 All requests to the server are handled using the `$api` object. All api functions go inside the `res/js/api` folders. To make an api call you can do `this.$api.nameOfTheApiFunction` inside your components.
+
+The frontend uses a lot of elements from the [element UI Toolkit](https://github.com/ElemeFE/element) and the [el-admin Toolkit](https://github.com/smartprix/el-admin).
+
+*Note: Elements with the prefix* 'el-' *come from the* `element` *toolkit whereas those with the prefix* 'ela-' *come from the* `el-admin` *toolkit.*
+
+Following are examples of how simple component files for the **employee** example (used in the backend) might look like
+
+##### Employees.vue
+```js
+<template>
+	<ela-content-layout padding="0">
+		<div slot="head">
+			<h3>Employees</h3>
+			<div class="header-right">
+				<el-button
+					type="primary"
+					icon="el-icon-plus"
+					@click="$view.employee()">Add Employee
+				</el-button>
+			</div>
+		</div>
+
+		<div slot="filters">
+			<el-row type="flex">
+				<ela-filter-item label="Post" :span="6">
+					<el-select
+						size="small"
+						clearable
+						v-model="filters.post"
+						@change="handleFilterChange">
+						<el-option value="softwareDeveloper">Software Developer</el-option>
+						<el-option value="softwareDevelopmentIntern">Software Development Intern</el-option>
+					</el-select>
+				</ela-filter-item>
+				<ela-filter-item label="Search" :span="6" float="right">
+					<el-input
+						icon="el-icon-search"
+						size="small"
+						v-model="filters.search"
+						@click="handleFilterChange"
+						@keyup.native.enter="handleFilterChange">
+					</el-input>
+				</ela-filter-item>
+			</el-row>
+		</div>
+
+		<el-table
+			:data="employees.nodes"
+			style="width: 100%"
+			stripe
+			border
+			v-loading="loadingSelfData">
+			<el-table-column label="View" align="center" width="90">
+				<el-button
+					slot-scope="scope"
+					type="primary"
+					size="small"
+					@click="$view.employee(scope.row)">Details
+				</el-button>
+			</el-table-column>
+			<el-table-column prop="id" label="Id" width="60"></el-table-column>
+			<el-table-column prop="name" label="Name"></el-table-column>
+			<el-table-column prop="post" label="Post"></el-table-column>
+		</el-table>
+
+		<div slot="foot">
+			<div class="footer-right">
+				<el-pagination
+					@size-change="handleSizeChange"
+					@current-change="handleCurrentChange"
+					:current-page="filters.page"
+					:page-sizes="[20, 50, 100, 250, 500]"
+					:page-size="filters.count"
+					layout="total, sizes, prev, pager, next, jumper"
+					:total="employees.totalCount">
+				</el-pagination>
+			</div>
+		</div>
+
+	</ela-content-layout>
+</template>
+
+<script>
+import {paginationMixin} from 'vutils';
+
+export default {
+	name: 'Employees',
+
+	mixins: [ paginationMixin() ],
+
+	data() {
+		return {
+			employees: {},
+			filters: {
+				search: '',
+				post: '',
+				page: 1,
+				count: 20,
+			},
+		};
+	},
+
+	methods: {
+		loadSelfData(filters) {
+			return this.$api.getEmployees(filters).then((employees) => {
+				this.employees = employees;
+			});
+		},
+	},
+
+	events: {
+		employeeMutated() {
+			this.reloadSelfData();
+		},
+	},
+};
+</script>
+```
+
+The pagination mixin used in the above code is one of the many utilities in the [`vutils`](https://github.com/smartprix/vutils) package, which will come in handy while working on the project.
+
+##### Employee.vue
+```js
+<template>
+	<ela-content-layout>
+		<div slot="head">
+			<h3>
+				<span v-if="isAdd">Add&nbsp;</span>Employee
+				<small v-if="!isAdd">{{ data.name }}</small>
+			</h3>
+			<div class="header-right">
+				<el-button
+					type="danger"
+					icon="el-icon-delete"
+					@click="deleteEmployee(data)"
+					v-if="!isAdd">
+				</el-button>
+			</div>
+		</div>
+		<el-tabs type="card" slot="tabs">
+			<el-tab-pane label="Details" v-loading="loading">
+				<employee-form
+					:form-data="employee"
+					@done="$emit('done')">
+				</employee-form>
+			</el-tab-pane>
+		</el-tabs>
+	</ela-content-layout>
+</template>
+
+<script>
+import EmployeeForm from './EmployeeForm.vue';
+
+export default {
+	name: 'Employee',
+
+	reEvents: {delete: 'done'},
+
+	components: {
+		EmployeeForm,
+	},
+
+	props: {
+		data: {
+			type: Object,
+			modify: 'employee',
+		},
+		fetch: Boolean,
+	},
+
+	data: () => ({
+		loading: false,
+	}),
+
+	computed: {
+		isAdd() {
+			return !(this.data && this.data.id);
+		},
+	},
+
+	created() {
+		this.loadEmployee();
+	},
+
+	methods: {
+		loadEmployee() {
+			if (this.fetch) {
+				this.loading = true;
+				this.$api.getEmployee(this.data.id).then((employee) => {
+					this.employee = employee;
+					this.loading = false;
+				});
+			}
+		},
+
+		deleteEmployee(employee) {
+			this.$confirm(
+				'Are you sure?',
+				'Delete Employee',
+				{type: 'warning'},
+			).then(() => {
+				this.$api.deleteEmployee(employee.id)
+					.then(() => {
+						this.$notify({
+							title: 'Success',
+							message: 'Employee Deleted Successfully',
+							type: 'success',
+						});
+						this.$bus.$emit('employeeMutated', employee);
+						this.$emit('done');
+					}).catch((res) => {
+						this.$notify({
+							title: 'Danger',
+							message: 'Unable to Delete',
+							type: 'danger',
+						});
+						console.log(res);
+						this.$emit('done');
+					});
+			}).catch(() => {});
+		},
+	},
+};
+</script>
+```
+
+##### EmployeeForm.vue
+```js
+<template>
+	<div v-loading="loading">
+		<el-form
+			ref="form"
+			:model="employee"
+			:rules="rules"
+			label-position="top">
+			<el-form-item prop="globalError" class="form-global-error"></el-form-item>
+
+			<el-row :gutter="12">
+				<el-col :span="16">
+					<el-form-item label="Employee Name" prop="name">
+						<el-input v-model.trim="employee.name"></el-input>
+					</el-form-item>
+				</el-col>
+				<el-col :span="8">
+					<el-form-item label="Post" prop="post">
+						<el-select v-model="employee.post">
+							<el-option value="softwareDeveloper">Software Developer</el-option>
+							<el-option value="softwareDevelopmentIntern">Software Development Intern</el-option>
+						</el-select>
+					</el-form-item>
+				</el-col>
+			</el-row>
+
+			<el-form-item label="Address" prop="address">
+				<el-input type="textarea" :rows="5" v-model.trim="employee.address"></el-input>
+			</el-form-item>
+
+			<el-form-item>
+				<el-button type="primary" @click="submit">Submit</el-button>
+				<el-button type="text" @click="$emit('done')">Cancel</el-button>
+			</el-form-item>
+		</el-form>
+	</div>
+</template>
+
+<script>
+export default {
+	name: 'EmployeeForm',
+
+	props: {
+		formData: {
+			type: Object,
+			default: () => ({
+				name: '',
+				address: '',
+				post: 'Software Developer',
+			}),
+			modify: 'employee',
+		},
+	},
+
+	data() {
+		return {
+			rules: {
+				name: [{required: true, message: 'Please Enter Name'}],
+				post: [{required: true, message: 'Please Choose Post'}],
+			},
+			loading: false,
+		};
+	},
+
+	methods: {
+		submit() {
+			this.$utils.clearFormErrors(this.$refs.form);
+			this.$refs.form.validate((valid) => {
+				if (!valid) return;
+				this.loading = true;
+				this.$api.saveEmployee(this.employee).then(() => {
+					this.$notify({
+						title: 'Success',
+						message: 'Employee Saved Successfully',
+						type: 'success',
+					});
+					this.loading = false;
+					this.$bus.$emit('employeeMutated', this.employee);
+					this.$emit('done');
+				}).catch((res) => {
+					this.$utils.setFormErrors(this.$refs.form, res.userErrors);
+					this.loading = false;
+				});
+			});
+		},
+	},
+};
+</script>
+```
+
+The api functions used should be present in the `js/api` folder. You generally keep all the related api functions in the same file, thus all the functions used in the above examples might look like this (present in `employee.js` file in the `js/api` folder)
+
+##### employee.js (the api functions)
+```js
+import {query, mutation, toGqlArg as arg} from '../helpers';
+
+const fields = `
+	id
+	name
+	address
+	post
+`;
+
+function getEmployee(id) {
+	return query(`employee(id: ${id}) { ${fields} }`)
+		.then(data => data.employee);
+}
+
+function getEmployees(search) {
+	return query(`employees(${arg(search)}) {
+		nodes { ${fields} }
+		totalCount
+		pageInfo {
+			startCursor
+			endCursor
+			hasNextPage
+			hasPreviousPage
+			edgeCount
+		}
+	}`)
+		.then(data => data.employees);
+}
+
+function saveEmployee(employee) {
+	const pick = ['id', 'name', 'address', 'post'];
+	return mutation(`saveEmployee(${arg(employee, pick)}) { ${fields} }`)
+		.then(data => data.saveEmployee);
+}
+
+function deleteEmployee(employeeId) {
+	return mutation(`deleteEmployee(id: ${employeeId}) {
+		id
+	}`);
+}
+
+export {
+	getEmployee,
+	getEmployees,
+	saveEmployee,
+	deleteEmployee,
+};
+```
+
+The above example uses some functions imported from the `helpers.js` file. This file contains various kind of helper functions used in the project. You can go through the file to get an idea what each of these function does (they are basically used to wrap the query/mutation in the request sent to the server).
