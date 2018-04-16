@@ -105,7 +105,7 @@ The `makeSchemaFromModules` function from [`gqutils`](https://github.com/smartpr
 Following is a simple example of how each of the above mentioned files might look
 
 ##### Employee.js (the Model)
-```sh
+```js
 import {Model} from 'xorm'; // import the 'Model' class from xorm
 
 class Employee extends Model { // our model extends the 'Model' class
@@ -135,7 +135,7 @@ export default Employee;
 ```
 
 ##### schema.js (the schemas)
-```sh
+```js
 // this defines a graphql type
 const Employee = {
 	graphql: 'type',
@@ -197,7 +197,7 @@ export default {
 ```
 
 ##### resolvers.js (the resolvers)
-```sh
+```js
 import {Employee} from '../models';
 
 export default {
