@@ -604,3 +604,69 @@ export {
 ```
 
 The above example uses some functions imported from the `helpers.js` file. This file contains various kind of helper functions used in the project. You can go through the file to get an idea what each of these function does (they are basically used to wrap the query/mutation in the request sent to the server).
+
+### Adding Tests
+All tests are added inside the `test` folder. We use the [`mocha`](https://mochajs.org/) test framework along with the [`chai`](http://www.chaijs.com/) assertion library.
+
+Names of all test files must end with `.test.js`. To run all the tests you can use `npm run test` from the terminal.
+
+The file `test/index.test.js` contains a simple example describing what a test should look like.
+
+For **API** testing, a file named `api.test.js` already exists in the `test` folder. It tests all the queries and mutations listed in the `test/api` folder.
+
+You can describe tests for APIs as objects.
+
+Objects describing test case for a query should have a `query`, and either an `expectFunction` or an `expect`.
+
+* `query` - the GraphQL query
+* `expectFunction` - a custom function describing what the test expects
+* `expect` - the object/value to be expected as the result
+
+An object describing a test for a query might look like as follows:
+```js
+const employee = {
+	query: `query {
+		employee(id: 1) {
+			id
+			name
+			post
+		}
+	}`,
+	expect: {
+		id: '1',
+		name: 'XYZ',
+		post: 'Software Developer',
+	},
+};
+```
+
+Objects describing test case for a mutation should have a `mutation`, a `query` and an `expect`.
+
+* `mutation` - the GraphQL mutation
+* `query` - a **function** which expects an _id_ and returns a GraphQL query to be executed in order to test whether the mutation worked correctly
+* `expect` - the object/value to be expected as the result of the query (not the mutation)
+
+*Note: The `query` is executed only in case an `id` is received in the response of the mutation. And that `id` itself is sent as an argument to the `query` function*
+
+An object describing a test for a query might look as follows:
+```js
+const saveEmployee = {
+	mutation: `mutation {
+		saveEmployee(name: "XYZ", post: "Software Developer") {
+			id
+		}
+	}`,
+	query: id => `query {
+			employee(id: ${id}) {
+				name
+				post
+			}
+		}`,
+	expect: {
+		employee: {
+			name: 'XYZ',
+			post: 'Software Developer',
+		},
+	},
+};
+```
