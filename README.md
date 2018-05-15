@@ -46,7 +46,7 @@ sudo bash ansible/dev_machine_setup
 #### How To Start:
 * Clone this repository
 * Run `yarn` to install dependencies.
-* Create a database named test in your mysql server
+* Create a database named `starter` in your postgres server
 * Run `npm run migrate`
 * You are ready. Start writing your code in `src/index.js`
 
