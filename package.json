@@ -45,7 +45,6 @@
     "koa-router": "7.4.0",
     "koa-send": "^4.1.3",
     "koa-static-cache": "5.1.2",
-    "koa-views": "6.1.4",
     "lodash": "4.17.5",
     "moment": "^2.22.0",
     "mysql2": "^1.5.3",
@@ -72,7 +71,7 @@
     "eslint-config-smartprix": "^3.4.2",
     "husky": "^0.14.3",
     "mocha": "^5.0.5",
-    "sm-webpack-config": "^0.18.2"
+    "sm-webpack-config": "^0.19.1"
   },
   "eslintConfig": {
     "extends": "smartprix",

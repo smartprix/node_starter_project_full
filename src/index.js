@@ -1,11 +1,10 @@
-import {cfg} from 'sm-utils';
+import {file, cfg} from 'sm-utils';
 import {graphqlKoa, graphiqlKoa} from 'graphql-server-koa';
 import {formatError} from 'gqutils';
 
 import Koa from 'koa';
 import Route from 'koa-router';
 import bodyParser from 'koa-body';
-import views from 'koa-views';
 import staticCache from 'koa-static-cache';
 
 import './global';
@@ -23,12 +22,6 @@ app.use(staticCache('./static', {
 	dynamic: true,						// dynamically reload files which are not cached
 }));
 
-app.use(views('./static/dist/basic', {
-	map: {
-		html: 'nunjucks',
-	},
-}));
-
 app.use(bodyParser({
 	multipart: true,
 }));
@@ -37,7 +30,7 @@ app.use(Request.middleware());
 installRoutes(app);
 
 route.get('/', async (ctx) => {
-	await ctx.render('index');
+	ctx.body = await file('./static/dist/basic/index.html').read();
 });
 
 route.post('/api', graphqlKoa(ctx => ({
