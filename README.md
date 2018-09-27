@@ -40,7 +40,8 @@ unzip -o master.zip
 cd node_starter_project_full-master/setup
 unzip -o ansible.zip -d ansible/
 bash setup.sh
-sudo bash ansible/dev_machine_setup
+cd ansible
+sudo bash dev_machine_setup
 ```
 
 #### How To Start:
