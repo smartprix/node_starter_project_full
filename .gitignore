@@ -65,3 +65,6 @@ uploads
 config_private.js
 *.private.*
 private
+
+# We are using yarn so package-lock is not necessary
+package-lock.json
