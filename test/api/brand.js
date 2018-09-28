@@ -52,7 +52,7 @@ const brands = {
 			},
 			{
 				id: '5',
-				name: 'hewlett packard',
+				name: 'Hewlett Packard',
 				aliases: [
 					'hp',
 				],

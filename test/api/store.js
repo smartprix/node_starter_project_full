@@ -8,7 +8,7 @@ const store = {
 	}`,
 	expect: {
 		name: 'amazon',
-		link: 'http://www.amazon.in/',
+		link: 'https://www.amazon.in/',
 		status: 'ACTIVE',
 	},
 };
@@ -26,19 +26,19 @@ const stores = {
 		nodes: [
 			{
 				name: 'amazon',
-				link: 'http://www.amazon.in/',
+				link: 'https://www.amazon.in/',
 			},
 			{
 				name: 'flipkart',
-				link: 'http://www.flipkart.com/',
+				link: 'https://www.flipkart.com/',
 			},
 			{
 				name: 'snapdeal',
-				link: 'http://www.snapdeal.com/',
+				link: 'https://www.snapdeal.com/',
 			},
 			{
 				name: 'ebay',
-				link: 'http://www.ebay.in/',
+				link: 'https://www.ebay.in/',
 			},
 			{
 				name: 'infibeam',
@@ -50,7 +50,7 @@ const stores = {
 
 const saveStore = {
 	mutation: `mutation {
-		saveStore(name: "Tata Cliq", shortName: "TC", link: "http://tatacliq.com", domain: "tatacliq.com", status: "ACTIVE") {
+		saveStore(name: "Tata Cliq", shortName: "TC", link: "https://tatacliq.com", domain: "tatacliq.com", status: "ACTIVE") {
 			id
 		}
 	}`,
@@ -67,7 +67,7 @@ const saveStore = {
 		store: {
 			name: 'Tata Cliq',
 			shortName: 'TC',
-			link: 'http://tatacliq.com',
+			link: 'https://tatacliq.com',
 			domain: 'tatacliq.com',
 			status: 'ACTIVE',
 		},
