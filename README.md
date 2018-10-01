@@ -63,7 +63,7 @@ npm run lint:fix
 npm run migrate
 
 # Create a new migration
-npm run migrate:create
+npm run migrate:create migration_name
 
 # Run tests
 npm test
