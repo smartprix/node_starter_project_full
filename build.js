@@ -1,4 +1,4 @@
-/* eslint-disable */
+// eslint-disable-next-line
 const smWebpack = require('sm-webpack-config');
 const KnexUtils = require('./src/lib/KnexUtils');
 
