@@ -4,7 +4,7 @@ import {cfg as cfgType} from 'sm-utils';
 import dType from 'sm-utils/d';
 
 /**
- *  For bluebird promise we are using '@types/bluebird-global'
+ * For bluebird promise we are using '@types/bluebird-global'
  * @see https://github.com/DefinitelyTyped/DefinitelyTyped/blob/354cec6/types/bluebird-global/index.d.ts#L12
  */
 
