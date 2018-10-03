@@ -68,3 +68,6 @@ private
 
 # We are using yarn so package-lock is not necessary
 package-lock.json
+
+# code coverage nyc Output
+.nyc_output
