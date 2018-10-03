@@ -14,7 +14,7 @@
     "dev": "node build.js",
     "test": "npm run lint && npm run test-only",
     "check-coverage": "true",
-    "build": "node build.js build && babel src --out-dir dist",
+    "build": "node build.js build",
     "lint": "eslint src res --ext .js --ext .vue --ext .html",
     "lint:fix": "eslint src res --ext .js --ext .vue --ext .html --fix",
     "test-only": "NODE_ENV=test mocha --exit --require babel-register test/*.test.js",

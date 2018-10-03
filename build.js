@@ -34,20 +34,26 @@ else if (command === 'run-admin') {
 else if (command === 'build') {
 	const arg = process.argv[3];
 	if (arg === 'admin') {
-		(Promise.all([
+		Promise.all([
 			smWebpack.runProdWebpack({config: adminConfig}),
-		]), 'Admin Webpack build complete');
+		]).then(() => {
+			console.log('Admin Webpack build complete');
+		});
 	}
 	else if (arg === 'basic') {
-		(Promise.all([
+		Promise.all([
 			smWebpack.runProdWebpack({config: basicConfig}),
-		]), 'Basic Webpack build complete');
+		]).then(() => {
+			console.log('Basic Webpack build complete');
+		});
 	}
 	else {
-		(Promise.all([
+		Promise.all([
 			smWebpack.runProdWebpack({config: basicConfig}),
 			smWebpack.runProdWebpack({config: adminConfig}),
-		]), 'Done');
+		]).then(() => {
+			console.log('Done');
+		});
 	}
 }
 else if (command === 'refresh-db') {
