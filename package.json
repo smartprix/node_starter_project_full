@@ -19,7 +19,7 @@
     "lint": "eslint src res --ext .js --ext .vue --ext .html",
     "lint:fix": "eslint src res --ext .js --ext .vue --ext .html --fix",
     "test-only": "NODE_ENV=test mocha --exit --require babel-register test/*.test.js",
-    "test-coverage": "npm run build; NODE_ENV=test nyc mocha --exit --require @babel/register $(find test -iname *.test.js)",
+    "test-coverage": "npm run build; NODE_ENV=test nyc mocha --exit --require babel-register $(find test -iname *.test.js)",
     "migrate": "knex migrate:latest",
     "migrate:create": "knex migrate:make",
     "server": "npm start",
