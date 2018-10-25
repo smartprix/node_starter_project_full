@@ -21,7 +21,7 @@ function setKnex(knex) {
  */
 function getKnex() {
 	if (!globalKnex) {
-		const env = process.env.NODE_ENV || 'developement';
+		const env = process.env.NODE_ENV || 'development';
 		const dbConfig = knexfile[env];
 		globalKnex = Knex(dbConfig);
 	}
@@ -82,14 +82,23 @@ function seedFolder(folderPath) {
 			}
 
 			tables = tables.filter(
-				table => table.indexOf('.json') !== -1
-			).map(table => table.slice(0, -5));
+				table => table.endsWith('.json') || table.endsWith('.json.js')
+			).map((table) => {
+				const type = table.endsWith('.json.js') ? 'js' : 'json';
+				const name = table.endsWith('.json.js') ? table.slice(0, -8) : table.slice(0, -5);
 
-			Promise.map(tables, (tableName) => {
-				return knex(tableName).del().then(() => {
+				return {name, type};
+			});
+
+			Promise.map(tables, (tableData) => {
+				return knex(tableData.name).then(() => {
+					const importFileName = (tableData.type === 'json') ?
+						tableData.name :
+						`${tableData.name}.json`;
+
 					// eslint-disable-next-line
-					const table = require(`${folderPath}/${tableName}`);
-					return knex(tableName).insert(table[tableName]);
+					const table = require(`${folderPath}/${importFileName}`);
+					return knex(tableData.name).insert(table[tableData.name]);
 				});
 			}).then(() => {
 				// fix autoincrement on postgres
@@ -105,7 +114,7 @@ function seedFolder(folderPath) {
  * create a table from schema, generally used in migrations
  */
 /* async function createTable(knex, tableName, schema) {
-	knex.schema.createTableIfNotExists(tableName, (table) => {
+	knex.schema.createTable(tableName, (table) => {
 		_.forEach(schema, (type, columnName) => {
 			type = type.toLowerCase();
 
@@ -145,10 +154,7 @@ function seedFolder(folderPath) {
 	table.timestamp('deletedAt').nullable();
 } */
 
-/*
- * Create (or recreate) the database for an environment
- */
-async function recreateDb(env) {
+async function dropDb(env, dbSuffix = '') {
 	if (process.env.NODE_ENV === 'production') {
 		throw new Error("Can't use this in production. Too dangerous.");
 	}
@@ -176,37 +182,87 @@ async function recreateDb(env) {
 
 	// since database may not exist, so we first create knex with no db selected
 	// and then create the database using raw queries
-	let knex = Knex(dbConfig);
+	const knex = Knex(dbConfig);
+	dbConfig.connection.database = dbName;
+
 	if (dbConfig.client === 'pg') {
 		try {
 			// postgres doesn't allow dropping database while other user are connected
 			// so force other users to disconnect
-			await knex.raw(`ALTER DATABASE ${dbName} CONNECTION LIMIT 1`);
+			await knex.raw(`ALTER DATABASE "${dbName + dbSuffix}" CONNECTION LIMIT 1`);
 			await knex.raw(`
 				SELECT pg_terminate_backend(pid)
 				FROM pg_stat_activity
-				WHERE datname = '${dbName}'
+				WHERE datname = '${dbName + dbSuffix}'
 			`);
 		}
 		catch (e) {
 			// Ignore errors
 		}
 	}
-	await knex.raw(`DROP DATABASE IF EXISTS ${dbName}`);
-	await knex.raw(`CREATE DATABASE ${dbName}`);
+	await knex.raw(`DROP DATABASE IF EXISTS "${dbName + dbSuffix}"`);
 	await knex.destroy();
+}
+
+/**
+ * Create db if not exists, else do nothing
+ */
+async function createDb(env, dbSuffix = '') {
+	const dbConfig = knexfile[env];
+	const dbName = dbConfig.connection.database;
+
+	const isPostgres = dbConfig.client === 'pg';
+	let knex;
+
+	// since database may not exist, so we first create knex with no db selected
+	// remove database name from config
+	if (isPostgres) {
+		// since postgres uses default database name as <user>, we need to set the database
+		dbConfig.connection.database = 'postgres';
+		knex = Knex(dbConfig);
+
+		const res = await knex.raw(`SELECT 1 FROM pg_database WHERE datname = '${dbName + dbSuffix}'`);
+		if (!res.rowCount) {
+			await knex.raw(`CREATE DATABASE "${dbName + dbSuffix}"`);
+		}
+		else {
+			console.log(`DB ${dbName + dbSuffix} already exists`);
+		}
+	}
+	else {
+		dbConfig.connection.database = undefined;
+		knex = Knex(dbConfig);
+		await knex.raw(`CREATE DATABASE IF NOT EXISTS "${dbName + dbSuffix}"`);
+	}
 
 	dbConfig.connection.database = dbName;
+	await knex.destroy();
+}
 
-	knex = Knex(dbConfig);
-	return knex;
+
+/**
+ * Create (or recreate) the database for an environment
+ */
+async function recreateDb(env, dbSuffix = '') {
+	await dropDb(env, dbSuffix);
+	await createDb(env, dbSuffix);
+
+	const dbConfig = knexfile[env];
+	const dbName = dbConfig.connection.database;
+	dbConfig.connection.database = dbName + dbSuffix;
+
+	if (globalKnex) await globalKnex.destroy();
+	globalKnex = Knex(dbConfig);
+
+	dbConfig.connection.database = dbName;
+	return globalKnex;
 }
 
 /*
  * Recreate the database for an environment and fill it with test data. Useful in development.
  */
-async function refreshDb(env) {
-	const knex = await recreateDb(env);
+async function refreshDb(env, dbSuffix = '') {
+	const knex = await recreateDb(env, dbSuffix);
 
 	// no need to rollback as we just recreated the database
 	// await knex.migrate.rollback();
@@ -221,6 +277,8 @@ async function refreshDb(env) {
 module.exports = {
 	getKnex,
 	setKnex,
+	dropDb,
+	createDb,
 	recreateDb,
 	refreshDb,
 	resetPgSequences,

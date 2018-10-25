@@ -1,5 +1,5 @@
+// eslint-disable-next-line
 const smWebpack = require('sm-webpack-config');
-
 const KnexUtils = require('./src/lib/KnexUtils');
 
 const command = process.argv[2] || 'default';
@@ -32,12 +32,29 @@ else if (command === 'run-admin') {
 	});
 }
 else if (command === 'build') {
-	Promise.all([
-		smWebpack.runProdWebpack({config: basicConfig}),
-		smWebpack.runProdWebpack({config: adminConfig}),
-	]).then(() => {
-		console.log('Done!');
-	});
+	const arg = process.argv[3];
+	if (arg === 'admin') {
+		Promise.all([
+			smWebpack.runProdWebpack({config: adminConfig}),
+		]).then(() => {
+			console.log('Admin Webpack build complete');
+		});
+	}
+	else if (arg === 'basic') {
+		Promise.all([
+			smWebpack.runProdWebpack({config: basicConfig}),
+		]).then(() => {
+			console.log('Basic Webpack build complete');
+		});
+	}
+	else {
+		Promise.all([
+			smWebpack.runProdWebpack({config: basicConfig}),
+			smWebpack.runProdWebpack({config: adminConfig}),
+		]).then(() => {
+			console.log('Done');
+		});
+	}
 }
 else if (command === 'refresh-db') {
 	KnexUtils.refreshDb(env).then(() => {

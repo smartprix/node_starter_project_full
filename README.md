@@ -40,7 +40,8 @@ unzip -o master.zip
 cd node_starter_project_full-master/setup
 unzip -o ansible.zip -d ansible/
 bash setup.sh
-sudo bash ansible/dev_machine_setup
+cd ansible
+sudo bash dev_machine_setup
 ```
 
 #### How To Start:
@@ -62,7 +63,7 @@ npm run lint:fix
 npm run migrate
 
 # Create a new migration
-npm run migrate:create
+npm run migrate:create migration_name
 
 # Run tests
 npm test
@@ -90,6 +91,22 @@ Values from the config can be accessed via `cfg(optionToBeRead)`. You can also p
 `cfg` also has functions such as `isDev`, `isProd`, `isTest`, etc. which returns `true/false` on the basis of the current process' (node) environment.
 
 ### Backend
+
+#### Writing Migration:
+```js
+exports.up = function(knex) {
+	return knex.schema.createTable('TableName', (table) => {
+		table.increments('id').primary();
+		table.string('name').notNullable();
+	});
+};
+
+exports.down = function(knex) {
+	return knex.schema.dropTableIfExists('TableName');
+};
+```
+Refer documentation at [knex docs](https://knexjs.org/).
+
 #### Adding a new Model:
 We use the [`xorm`](https://github.com/smartprix/xorm) ORM, which is based on [`ObjectionJS`](https://github.com/Vincit/objection.js/ "ObjectionJS GitHub Repo").
 

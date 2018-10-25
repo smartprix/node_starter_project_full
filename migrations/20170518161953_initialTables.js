@@ -1,17 +1,18 @@
 exports.up = function (knex) {
-	return knex.schema.createTableIfNotExists('Store', (table) => {
-		table.increments('id').primary();
-		table.string('name').notNullable();
-		table.string('shortName').notNullable();
-		table.text('link').notNullable();
-		table.string('domain').notNullable();
-		table.string('status').notNullable();
-		table.integer('rating').nullable();
-		table.timestamp('createdAt').nullable();
-		table.timestamp('updatedAt').nullable();
-		table.timestamp('deletedAt').nullable();
-	})
-		.createTableIfNotExists('Brand', (table) => {
+	return knex.schema
+		.createTable('Store', (table) => {
+			table.increments('id').primary();
+			table.string('name').notNullable();
+			table.string('shortName').notNullable();
+			table.text('link').notNullable();
+			table.string('domain').notNullable();
+			table.string('status').notNullable();
+			table.integer('rating').nullable();
+			table.timestamp('createdAt').nullable();
+			table.timestamp('updatedAt').nullable();
+			table.timestamp('deletedAt').nullable();
+		})
+		.createTable('Brand', (table) => {
 			table.increments('id').primary();
 			table.string('name').notNullable().defaultTo('');
 			table.string('aliases').notNullable().defaultTo('');
@@ -20,7 +21,7 @@ exports.up = function (knex) {
 			table.timestamp('updatedAt').nullable();
 			table.timestamp('deletedAt').nullable();
 		})
-		.createTableIfNotExists('Category', (table) => {
+		.createTable('Category', (table) => {
 			table.increments('id').primary();
 			table.string('name').notNullable().defaultTo('');
 			table.string('shortName').notNullable().defaultTo('');
@@ -36,11 +37,11 @@ exports.up = function (knex) {
 			table.unique('name');
 			table.unique('shortName');
 		})
-		.createTableIfNotExists('BrandCategoryMap', (table) => {
+		.createTable('BrandCategoryMap', (table) => {
 			table.integer('brandId').notNullable().defaultTo(0);
 			table.integer('categoryId').notNullable().defaultTo(0);
 		})
-		.createTableIfNotExists('User', (table) => {
+		.createTable('User', (table) => {
 			table.increments('id').primary();
 			table.string('username').notNullable().defaultTo('');
 			table.string('email').notNullable().defaultTo('');
@@ -48,8 +49,7 @@ exports.up = function (knex) {
 			table.string('password').notNullable().defaultTo('');
 			table.timestamp('dateOfBirth').nullable();
 			table.string('name').notNullable().defaultTo('');
-			table.enum('status', ['active', 'banned'])
-				.notNullable().defaultTo('active');
+			table.enum('status', ['active', 'banned']).notNullable().defaultTo('active');
 			table.text('image').nullable();
 			table.enum('gender', ['male', 'female', 'others']).notNullable().defaultTo('male');
 			table.string('facebookId').notNullable().defaultTo('');
@@ -65,7 +65,8 @@ exports.up = function (knex) {
 };
 
 exports.down = function (knex) {
-	return knex.schema.dropTableIfExists('Store')
+	return knex.schema
+		.dropTableIfExists('Store')
 		.dropTableIfExists('Brand')
 		.dropTableIfExists('Category')
 		.dropTableIfExists('BrandCategoryMap');

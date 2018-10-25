@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "module": "commonjs",
+    "allowJs": true,
+    "noEmit": true, // Don't output an compiled code
+    "noImplicitAny": true,
+    "outDir": "./tsdist",
+    "rootDir": "./",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "lib": [
+      "es2017",
+      "esnext.asynciterable"
+    ],
+  },
+  "include": [
+    "src/**/*",
+    "typings/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "coverage",
+    "test",
+    "dist",
+    ".git"
+  ],
+}
