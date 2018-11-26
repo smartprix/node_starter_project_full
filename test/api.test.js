@@ -2,10 +2,10 @@
 import {Connect} from 'sm-utils';
 import {expect} from 'chai';
 import {Model} from 'xorm';
+import * as knexUtils from '@smpx/knex-utils';
 
 import '../src/global';
 import runServer from '../src/index';
-import {KnexUtils} from '../src/lib/models';
 import * as queries from './api/queries';
 import * as mutations from './api/mutations';
 
@@ -14,7 +14,7 @@ let knex;
 
 before(async function () {
 	this.timeout(30000);
-	knex = await KnexUtils.refreshDb('test');
+	knex = await knexUtils.refreshDb('test');
 	Model.knex(knex);
 	const url = await runServer();
 });

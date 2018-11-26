@@ -39,6 +39,7 @@
   "author": "Hitesh Khandelwal <hitesh@smartprix.com> (http://www.smartprix.com/)",
   "license": "ISC",
   "dependencies": {
+    "@smpx/knex-utils": "^1.0.2",
     "@smpx/oak": "^1.2.5",
     "axios": "^0.18.0",
     "bluebird": "^3.5.3",
@@ -81,7 +82,6 @@
     "@babel/preset-env": "^7.1.6",
     "@babel/register": "^7.0.0",
     "@smpx/babel-changed": "^0.2.0",
-    "@smpx/knex-utils": "^1.0.2",
     "@types/bluebird-global": "^3.5.9",
     "babel-plugin-istanbul": "^5.1.0",
     "chai": "^4.2.0",
@@ -94,14 +94,8 @@
   },
   "eslintConfig": {
     "extends": "smartprix",
-    "globals": {
-      "d": false,
-      "_": false,
-      "moment": false
-    },
     "rules": {
       "no-await-in-loop": 0,
-      "no-console": 0,
       "vue/script-indent": 0,
       "vue/order-in-components": 0,
       "vue/attributes-order": 0

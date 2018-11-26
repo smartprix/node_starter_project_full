@@ -7,7 +7,6 @@ const models = [
 	'Store',
 	'Category',
 	'Brand',
-	'KnexUtils',
 	'User',
 	'Request',
 ];
