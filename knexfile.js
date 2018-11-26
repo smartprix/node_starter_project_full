@@ -1,20 +1,12 @@
-const _ = require('lodash');
-const config = require('./config.js');
+const {cfg} = require('sm-utils');
 
-const connection = _.merge({
-	database: 'starter',
-}, config.db);
-
-const testConnection = _.merge({
-	database: 'starter_admin',
-}, config.db);
-
-const client = config.db.client || 'pg';
+const connection = cfg('db');
+const client = cfg('db.client') || 'pg';
 
 module.exports = {
 	development: {
 		client,
-		debug: config.debug,
+		debug: cfg('debug'),
 		connection,
 		pool: {
 			min: 2,
@@ -54,7 +46,7 @@ module.exports = {
 
 	test: {
 		client,
-		connection: testConnection,
+		connection,
 		pool: {
 			min: 2,
 			max: 10,

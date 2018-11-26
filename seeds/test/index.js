@@ -1,9 +1,9 @@
+const knexUtils = require('@smpx/knex-utils');
 const path = require('path');
-const KnexUtils = require('../../src/lib/KnexUtils');
 
 const dataPath = path.join(__dirname, '../dummy');
 exports.seed = async function (knex) {
 	// fix autoincrement on postgres
-	KnexUtils.setKnex(knex);
-	await KnexUtils.seedFolder(dataPath);
+	knexUtils.setKnex(knex);
+	await knexUtils.seedFolder(dataPath);
 };
