@@ -77,7 +77,7 @@ class CategoryExtractor {
 			return matches.pop();
 		}
 
-		// console.log('Category IDs: ', categoryIds);
+		// Oak.log('Category IDs: ', categoryIds);
 		let finalCategory = null;
 		let limit = -1;
 		for (let i = matches.length - 1; i > limit; i--) {

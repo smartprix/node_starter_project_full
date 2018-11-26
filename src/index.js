@@ -60,7 +60,7 @@ function runServer() {
 		const server = app.listen(port, () => {
 			const address = server.address();
 			const url = `http://${address.address}:${address.port}`;
-			console.log(`Server listening on ${url}`);
+			Oak.log(`Server listening on ${url}`);
 
 			resolve(url);
 		});
