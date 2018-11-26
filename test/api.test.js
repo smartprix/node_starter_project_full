@@ -1,4 +1,3 @@
-/* eslint-disable */
 import {Connect} from 'sm-utils';
 import {expect} from 'chai';
 import {Model} from 'xorm';
@@ -16,11 +15,11 @@ before(async function () {
 	this.timeout(30000);
 	knex = await knexUtils.refreshDb('test');
 	Model.knex(knex);
-	const url = await runServer();
+	await runServer();
 });
 
 function testQueries(item) {
-	it(item + ' query testing', async function () {
+	it(item + ' query testing', async () => {
 		const request = new Connect();
 		request.post();
 		request.url('http://localhost:5000/api').cookies(true);
@@ -36,12 +35,11 @@ function testQueries(item) {
 		else {
 			expect(JSON.parse(res.body).data[item]).to.deep.equal(queries[item].expect);
 		}
-
 	});
 }
 
 function testMutations(item) {
-	it(item + ' mutation testing', async function () {
+	it(item + ' mutation testing', async () => {
 		const mutationRequest = new Connect();
 		mutationRequest.post();
 		mutationRequest.url('http://localhost:5000/api').cookies(true);
@@ -50,10 +48,10 @@ function testMutations(item) {
 		});
 
 		const mutationResponse = await mutationRequest;
-		if(mutationResponse.statusCode === 500) mutationResponse;
+		if (mutationResponse.statusCode === 500) mutationResponse;
 		expect(mutationResponse.statusCode).to.equal(200);
 
-		if(item === 'mailReview' || item === 'replyReview') {
+		if (item === 'mailReview' || item === 'replyReview') {
 			const rejected = JSON.parse(mutationResponse.body).data[item].rejected;
 			expect(rejected).to.be.empty;
 			return;
@@ -76,13 +74,15 @@ function testMutations(item) {
 
 describe('API testing', () => {
 	describe('Queries testing', () => {
-		for (let item in queries) {
+		// eslint-disable-next-line guard-for-in
+		for (const item in queries) {
 			testQueries(item);
 		}
 	});
 
-	describe('Mutations testing', function () {
-		for (let item in mutations) {
+	describe('Mutations testing', () => {
+		// eslint-disable-next-line guard-for-in
+		for (const item in mutations) {
 			testMutations(item);
 		}
 	});

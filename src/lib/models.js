@@ -1,5 +1,5 @@
 /* eslint-disable import/no-dynamic-require, global-require */
-import path from 'path';
+const path = require('path');
 
 const exported = {};
 

@@ -1,0 +1,14 @@
+{
+    "rules": {
+        "no-console": ["warn"]
+	},
+	"globals": {
+		"d": false,
+		"_": false,
+		"moment": false,
+		"cfg": false
+	},
+	"env": {
+		"node": true
+	}
+}

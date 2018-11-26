@@ -1,0 +1,12 @@
+{
+    "rules": {
+        "no-console": 0
+	},
+	"globals": {
+		"_": false
+	},
+	"env": {
+		"node": false,
+		"browser": true
+	}
+}

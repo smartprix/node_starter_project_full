@@ -1,5 +1,3 @@
-/* global describe, it */
-
 const expect = require('chai').expect;
 const myLib = require('../src/index'); // eslint-disable-line
 

@@ -135,7 +135,7 @@ export default {
 				});
 				return true;
 			}
-			else if (cachedResult) {
+			if (cachedResult) {
 				this.setOptions(cachedResult, query);
 				return true;
 			}

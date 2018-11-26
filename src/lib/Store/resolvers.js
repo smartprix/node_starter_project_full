@@ -1,5 +1,5 @@
 import {getConnectionResolver} from 'gqutils';
-import {Store} from '../index';
+import {Store} from '../models';
 
 export default {
 	Query: {

@@ -1,0 +1,16 @@
+{
+    "rules": {
+		"no-console": ["warn"],
+		"no-unused-expressions": "off"
+	},
+	"globals": {
+		"d": false,
+		"_": false,
+		"moment": false,
+		"cfg": false
+	},
+	"env": {
+		"node": true,
+		"mocha": true
+	}
+}
